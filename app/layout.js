@@ -171,13 +171,14 @@ export default function RootLayout({ children }) {
               "& .MuiDrawer-paper": {
                 width: drawerWidth,
                 boxSizing: "border-box",
+                // boxShadow: "none",
+                
               },
+            
             }}
             variant="permanent"
             anchor="left"
-            elevation={10}
-            
-            
+          
             
           >
             <Stack direction="row" height={70} pl={2} pt={4}>
@@ -187,7 +188,7 @@ export default function RootLayout({ children }) {
                 // className="w-[70px] pl-4"
                 alt="ministry of power energy and mineral resources bangladesh logo"
               ></Image>
-              <Typography variant="caption" pl={1} component="f6">
+              <Typography variant="caption" pl={1} component="h6">
                 Ministry of Power Energy & Mineral Resources
               </Typography>
             </Stack>
@@ -215,7 +216,7 @@ export default function RootLayout({ children }) {
           </Drawer>
           <Box
             component="main"
-            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 , backgroundColor: "#f2f5f5"}}
+            sx={{ flexGrow: 1, pt: 3 , backgroundColor: "#f2f5f5" , px:6}}
           >
             <Toolbar />
             {children}
