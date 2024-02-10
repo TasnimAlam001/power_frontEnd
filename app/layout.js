@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
           {/* --------------------------------------------------nav------------------------------ */}
           <AppBar
             color="inherit"
-            // variant="none"
+            variant="none"
             position="fixed"
             sx={{
               width: `calc(100% - ${drawerWidth}px)`,
@@ -165,7 +165,9 @@ export default function RootLayout({ children }) {
           <Drawer
             sx={{
               width: drawerWidth,
+              border : "none",
               flexShrink: 0,
+              
               "& .MuiDrawer-paper": {
                 width: drawerWidth,
                 boxSizing: "border-box",
@@ -173,6 +175,10 @@ export default function RootLayout({ children }) {
             }}
             variant="permanent"
             anchor="left"
+            elevation={10}
+            
+            
+            
           >
             <Stack direction="row" height={70} pl={2} pt={4}>
               <Image
@@ -188,34 +194,7 @@ export default function RootLayout({ children }) {
             <Toolbar />
 
             <List sx={{ pl: 2 }}>
-              {/* <ul >
-                <li
-
-                direction="row"
-                >
-                  <FaUser /> <span>Executive</span>
-                </li>
-                <li >
-                  <RiLightbulbFlashFill /> <span>Utilities</span>
-                </li>
-                <li >
-                  <FaMapMarkerAlt />
-                  <span>Zone</span>
-                </li>
-                <li >
-                  <TbBulbFilled /> <span>S & D List</span>
-                </li>
-                <li >
-                  <FaUsers /> <span>Users</span>
-                </li>
-                <li >
-                  <GiWallet /> <span>All Tickets</span>
-                </li>
-                <li>
-                  <FaSignOutAlt />
-                  <span>Logout</span>
-                </li>
-              </ul> */}
+             
 
               {data.map((item) => (
                 <ListItemButton key={item.label} sx={{ py: 0, minHeight: 38 }}>
@@ -236,7 +215,7 @@ export default function RootLayout({ children }) {
           </Drawer>
           <Box
             component="main"
-            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 , backgroundColor:"#e6e6e6"}}
+            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 , backgroundColor: "#f2f5f5"}}
           >
             <Toolbar />
             {children}
