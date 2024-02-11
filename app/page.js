@@ -1,7 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Date from "./components/date/page";
 import Utilities from "./components/utilities/page";
-import AllCharts from "./components/charts/page";
+import AllCharts from "./components/allCharts/page";
+
 
 export default function Home() {
   return (

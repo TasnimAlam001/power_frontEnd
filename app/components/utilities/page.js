@@ -20,7 +20,7 @@ export default async function utilities() {
     <Grid container spacing={{xs:2 , sm:4}}>
       {result.map((utility) => (
     
-          <Grid item xs={4} sm={2} key={utility.id}>
+          <Grid item xs={6} sm={2} key={utility.id}>
            
             <Paper 
             elevation={0}
