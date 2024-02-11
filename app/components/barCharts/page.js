@@ -51,7 +51,7 @@ const solvedData = data.map((item) => item.Solved);
 const openedData = data.map((item) => item.Opened);
 const xLabels = data.map((item) => item.name);
 
-export default function CustomBarChart() {
+export default function BarCharts() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const width = isSmallScreen ? 360 : 600;
