@@ -17,19 +17,19 @@ import React from "react";
 export default async function utilities() {
     const result = await getAllUtilities();
   return (
-    <Grid container spacing={4}>
+    <Grid container spacing={{xs:1 , sm:4}}>
       {result.map((utility) => (
     
-          <Grid item xs={2} key={utility.id}>
+          <Grid item xs={4} sm={2} key={utility.id}>
            
             <Paper 
             elevation={0}
             sx={{display:"flex", flexDirection:"column", alignItems: "center"}}>
               <Box px={2} pt={2}>
-                <img height={100} width="100%"  src={utility.logo} alt="logo"></img>
+                <img height={95 } width="100%"  src={utility.logo} alt="logo"></img>
                 {/* <Image width={80} height={80} src={utility.logo} alt="logo"></Image> */}
               </Box>
-              <Typography variant="body1">
+              <Typography sx={{fontSize: {xs: 13, sm:20}}}>
                 Total Complaints
               </Typography>
               <Typography

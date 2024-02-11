@@ -272,8 +272,9 @@ export default function NavBarDrawer({ children }) {
           </Drawer>
         </Box>
         <Box
+        px={{xs:2, sm:6}}
             component="main"
-            sx={{ flexGrow: 1, pt: 3, backgroundColor: "#f2f5f5", px: 6 }}
+            sx={{ flexGrow: 1, pt: 3, backgroundColor: "#f2f5f5",}}
           >
             <Toolbar />
             {children}

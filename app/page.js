@@ -6,11 +6,18 @@ import AllCharts from "./components/charts/page";
 export default function Home() {
   return (
     <main>
-      <Box > 
-
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Typography sx={{fontSize: 19, fontWeight: 600, color: "green"}}>All Utilities</Typography>
-          <Date></Date>
+      <Box>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Typography sx={{ fontSize: 19, fontWeight: 600, color: "green" }}>
+            All Utilities
+          </Typography>
+          
+            {/* <Date></Date> */}
+          
         </Stack>
         <Box my={6}>
           <Utilities></Utilities>
@@ -18,7 +25,6 @@ export default function Home() {
         <Box>
           <AllCharts></AllCharts>
         </Box>
-
       </Box>
     </main>
   );
