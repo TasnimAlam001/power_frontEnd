@@ -25,7 +25,7 @@ export default async function utilities() {
             <Paper 
             elevation={0}
             sx={{display:"flex", flexDirection:"column", alignItems: "center"}}>
-              <Box px={3} py={2}>
+              <Box px={2} pt={2}>
                 <img height={100} width="100%"  src={utility.logo} alt="logo"></img>
                 {/* <Image width={80} height={80} src={utility.logo} alt="logo"></Image> */}
               </Box>
@@ -34,10 +34,10 @@ export default async function utilities() {
               </Typography>
               <Typography
               color="#04984A"
-                mb={5}
+                mb={4}
                 gutterBottom
                 variant="h5"
-                component="div"
+               
               >
                 {utility.total_complaints}
               </Typography>

@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Date from "./components/date/page";
 import Utilities from "./components/utilities/page";
+import AllCharts from "./components/charts/page";
 
 export default function Home() {
   return (
@@ -15,9 +16,8 @@ export default function Home() {
           <Utilities></Utilities>
         </Box>
         <Box>
-          
+          <AllCharts></AllCharts>
         </Box>
-
 
       </Box>
     </main>
