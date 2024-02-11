@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 
-const theme = createTheme(); // You may want to customize your theme
+const theme = createTheme();
 
 const data = [
   { label: "Opened", value: 273, color: "#04984A" },
@@ -32,17 +32,14 @@ const getArcLabel = (params) => {
 export default function PieChars() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // Define width and height based on screen size
   const width = isSmallScreen ? 360 : 410;
-  // const radius = isSmallScreen ? 90 : 100;
-  // const height = isSmallScreen ? 200 : 250;
 
   return (
     <ThemeProvider theme={theme}>
       <div>
         <Card>
           <Stack sx={{ height: 460 }} direction="column" justifyContent="space-between">
-            <CardContent className="p-0">
+            <CardContent >
               <Typography variant="h5">Total Tickets</Typography>
               <PieChart
                 series={[
@@ -54,7 +51,7 @@ export default function PieChars() {
                   },
                 ]}
                 width={width}
-                height={250}
+                height={250}   
                 sx={{
                   [`& .${pieArcLabelClasses.root}`]: {
                     fill: "white",
@@ -66,7 +63,7 @@ export default function PieChars() {
               <Grid container columnSpacing={1} sx={{ mt: 4, pl: 3 }}>
                 {data.map((name, index) => (
                   <Grid item xs={6} key={name.label}>
-                    <Typography sx={{fontSize:{xs:13, sm:18}}} className="list-disc  ">
+                    <Typography sx={{fontSize:{xs:13, sm:15}}} className="list-disc  ">
                       {index + 1}. {name.label} Tickets-{name.value}
                     </Typography>
                   </Grid>

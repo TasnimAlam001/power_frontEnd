@@ -17,7 +17,7 @@ import React from "react";
 export default async function utilities() {
     const result = await getAllUtilities();
   return (
-    <Grid container spacing={{xs:1 , sm:4}}>
+    <Grid container spacing={{xs:2 , sm:4}}>
       {result.map((utility) => (
     
           <Grid item xs={4} sm={2} key={utility.id}>
