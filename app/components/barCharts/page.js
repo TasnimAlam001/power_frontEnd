@@ -11,18 +11,19 @@ import {
   createTheme,
   useMediaQuery,
 } from "@mui/material";
+import theme from "@/app/theme";
 
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 425,
-      md: 600,
-      lg: 1100,
-      xl: 1440,
-    },
-  },
-});
+// const theme = createTheme({
+//   breakpoints: {
+//     values: {
+//       xs: 0,
+//       sm: 425,
+//       md: 600,
+//       lg: 1100,
+//       xl: 1440,
+//     },
+//   },
+// });
 
 const data = [
   {
@@ -128,6 +129,15 @@ export default function BarCharts() {
                       color: "#3382EF",
                     },
                   ]}
+                  slotProps={{
+                    legend:{
+                      itemMarkHeight: 9,
+                      itemMarkWidth:9,
+                      labelStyle: {
+                        fontSize: 15,
+                      },
+                    }
+                  }}
                   xAxis={[
                     {
                       data: xLabels,

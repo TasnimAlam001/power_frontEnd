@@ -12,18 +12,19 @@ import {
 } from "@mui/material";
 
 import { LineChart } from "@mui/x-charts";
+import theme from "@/app/theme";
 
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 425,
-      md: 600,
-      lg: 1100,
-      xl: 1440,
-    },
-  },
-});
+// const theme = createTheme({
+//   breakpoints: {
+//     values: {
+//       xs: 0,
+//       sm: 425,
+//       md: 600,
+//       lg: 1100,
+//       xl: 1440,
+//     },
+//   },
+// });
 const data = [
   {
     name: "BPDP",
@@ -122,6 +123,15 @@ export default function AreaCharts() {
                       },
                     },
                   ]}
+                  slotProps={{
+                    legend:{
+                      itemMarkWidth: 10,
+                      itemMarkHeight: 10,
+                      labelStyle: {
+                        fontSize: 15,
+                      },
+                    }
+                  }}
                   xAxis={[
                     {
                       scaleType: "point",

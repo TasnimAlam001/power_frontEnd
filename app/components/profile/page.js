@@ -102,7 +102,7 @@ export default function Profile() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
        
-        <MenuItem onClick={handleClose}>
+        <MenuItem sx={{ display: { xs: "block", sm: "none" } }} onClick={handleClose}>
           <AccountCircleOutlinedIcon fontSize="large" sx={{ pr: 0.5 }} />{" "}
           <Box sx={{ display: { xs: "block", sm: "none" } }} pl={1}>
             <Typography sx={{fontWeight: 550}} variant="body2" spacing={2}>

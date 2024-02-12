@@ -41,7 +41,8 @@ import { GiWallet } from "react-icons/gi";
 import Image from "next/image";
 import logo from "@/public/logo2.png";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import Profile from "@/app/profile/page";
+import Profile from "../profile/page";
+
 
 const data = [
   { icon: <FaUser />, label: "Executive" },

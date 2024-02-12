@@ -13,18 +13,19 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import styled from "@emotion/styled";
+import theme from "@/app/theme";
 
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 425,
-      md: 600,
-      lg: 1100,
-      xl: 1440,
-    },
-  },
-});
+// const theme = createTheme({
+//   breakpoints: {
+//     values: {
+//       xs: 0,
+//       sm: 425,
+//       md: 600,
+//       lg: 1100,
+//       xl: 1440,
+//     },
+//   },
+// });
 
 const dataset = [
   {

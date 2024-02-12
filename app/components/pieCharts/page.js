@@ -13,18 +13,19 @@ import {
   Box,
 } from "@mui/material";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
+import theme from "@/app/theme";
 
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 425,
-      md: 600,
-      lg: 1040,
-      xl: 1440,
-    },
-  },
-});
+// const theme = createTheme({
+//   breakpoints: {
+//     values: {
+//       xs: 0,
+//       sm: 425,
+//       md: 600,
+//       lg: 1040,
+//       xl: 1440,
+//     },
+//   },
+// });
 
 const data = [
   { label: "Opened", value: 273, color: "#04984A" },
@@ -56,8 +57,8 @@ export default function PieChars() {
   const height = isMediumScreen ? (isSmallScreen ? 290 : 290) : 250;
   const boxHeight = isMediumScreen ? (isSmallScreen ? 560 : 560) : 460;
 
-  const markH = isSmallScreen ?7:15;
-  const markFont = isSmallScreen ? 14 : 18;
+  // const markH = isMediumScreen ? 4: 15;
+  const markFont = isMediumScreen ? 12 : 15;
 
   return (
     <ThemeProvider theme={theme}>
@@ -88,10 +89,12 @@ export default function PieChars() {
                     ? {
                         direction: "row",
                         position: { vertical: "top", horizontal: "middle" },
+                        itemMarkWidth: 9,
+                        itemMarkHeight: 9,
                       }
                     : {
-                        itemMarkWidth: markH,
-                        itemMarkHeight: markH,
+                        itemMarkWidth: 9,
+                        itemMarkHeight: 9,
                         labelStyle: {
                           fontSize: markFont,
                         },
