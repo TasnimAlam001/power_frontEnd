@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import * as React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import {
@@ -12,7 +12,17 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-const theme = createTheme();
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 425,
+      md: 600,
+      lg: 1100,
+      xl: 1440,
+    },
+  },
+});
 
 const data = [
   {
@@ -53,15 +63,27 @@ const xLabels = data.map((item) => item.name);
 
 export default function BarCharts() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isLgScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const width = isSmallScreen ? 360 : 600;
-  const height = isSmallScreen ? 330 : 400;
+  // const width = isSmallScreen ? 360 : 600;
+  // const height = isSmallScreen ? 330 : 400;
+  const width = isSmallScreen? 260 : isMediumScreen ? 360 : isLgScreen ? 560: 599;
+  const height = isMediumScreen ? (isSmallScreen ? 290 : 330) : 400;
+  const boxHeight = isMediumScreen ? (isSmallScreen ? 370 : 460) : 460;
   const fontS = isSmallScreen ? 9 : 12;
-  const boxHeight = isSmallScreen ? 400 : 460;
+  // const boxHeight = isSmallScreen ? 400 : 460;
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ position: "relative" }}>
-        <Box sx={{ position: "absolute", left: "-15px", top: "50%", display: { xs: 'none', sm: 'block' }, }}>
+        <Box
+          sx={{
+            position: "absolute",
+            left: "-15px",
+            top: "50%",
+            display: { xs: "none", md: "block" },
+          }}
+        >
           <Typography
             sx={{
               transform: "rotate(-90deg)",
@@ -79,25 +101,45 @@ export default function BarCharts() {
             justifyContent="space-between"
           >
             <CardContent>
-              <Typography variant="h5">Total Tickets</Typography>
-              <Stack sx={{mt:3}} direction="row" alignItems="center">
+              <Typography variant="h6">
+                Utility Wise Tickets ( Opened and Solved)
+              </Typography>
+              <Stack sx={{ mt: 3 }} direction="row" alignItems="center">
                 <BarChart
-                margin={{
-                  top:60,
-                  bottom:90,
-                  right:20
-                }}
+                  margin={{
+                    top: 60,
+                    bottom: 90,
+                    right: 20,
+                  
+                  }}
                   width={width}
                   height={height}
                   series={[
-                    { data: openedData, label: "Opened", id: "openedId", color: "#04984A" },
-                    { data: solvedData, label: "Solved", id: "solvedId" , color: "#3382EF"},
+                    {
+                      data: openedData,
+                      label: "Opened",
+                      id: "openedId",
+                      color: "#04984A",
+                    },
+                    {
+                      data: solvedData,
+                      label: "Solved",
+                      id: "solvedId",
+                      color: "#3382EF",
+                    },
                   ]}
-                  xAxis={[{ data: xLabels, scaleType: "band" ,
-                  tickLabelStyle: {
-                    fontSize: fontS,
-                  },
-                }]}
+                  xAxis={[
+                    {
+                      data: xLabels,
+                      
+                      scaleType: "band",
+                      tickLabelStyle: {
+                        angle: isMediumScreen? 90: 0,
+                        textAnchor: 'start',
+                        fontSize: fontS,
+                      },
+                    },
+                  ]}
                 />
               </Stack>
             </CardContent>

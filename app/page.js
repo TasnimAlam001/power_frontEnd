@@ -17,7 +17,7 @@ export default function Home() {
             All Utilities
           </Typography>
           
-            {/* <Date></Date> */}
+        <Date/>
           
         </Stack>
         <Box my={6}>

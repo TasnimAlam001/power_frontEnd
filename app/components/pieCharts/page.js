@@ -10,10 +10,21 @@ import {
   useMediaQuery,
   ThemeProvider,
   createTheme,
+  Box,
 } from "@mui/material";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 
-const theme = createTheme();
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 425,
+      md: 600,
+      lg: 1040,
+      xl: 1440,
+    },
+  },
+});
 
 const data = [
   { label: "Opened", value: 273, color: "#04984A" },
@@ -31,19 +42,39 @@ const getArcLabel = (params) => {
 
 export default function PieChars() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isLgScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const width = isSmallScreen ? 360 : 410;
-  const markH = isSmallScreen ? 9 : 15;
+  // const width = isMediumScreen ? (isSmallScreen ? 260 : 360) : 410;
+  const width = isSmallScreen
+    ? 260
+    : isMediumScreen
+    ? 360
+    : isLgScreen
+    ? 560
+    : 410;
+  const height = isMediumScreen ? (isSmallScreen ? 290 : 290) : 250;
+  const boxHeight = isMediumScreen ? (isSmallScreen ? 560 : 560) : 460;
+
+  const markH = isSmallScreen ?7:15;
   const markFont = isSmallScreen ? 14 : 18;
 
   return (
     <ThemeProvider theme={theme}>
       <div>
         <Card>
-          <Stack sx={{ height: 460 }} direction="column" justifyContent="space-between">
-            <CardContent >
+          <Stack
+            sx={{ height: boxHeight }}
+            direction="column"
+            justifyContent="space-between"
+          >
+            <CardContent>
               <Typography variant="h5">Total Tickets</Typography>
               <PieChart
+                margin={{
+                  top: isMediumScreen ? 105 : 10,
+                  left: isMediumScreen ? 90 : 5,
+                }}
                 series={[
                   {
                     outerRadius: 95,
@@ -53,16 +84,21 @@ export default function PieChars() {
                   },
                 ]}
                 slotProps={{
-                  legend: {
-                    itemMarkWidth: markH,
-                    itemMarkHeight: markH,
-                    labelStyle:{
-                      fontSize:14
-                    }
-                  }
+                  legend: isMediumScreen
+                    ? {
+                        direction: "row",
+                        position: { vertical: "top", horizontal: "middle" },
+                      }
+                    : {
+                        itemMarkWidth: markH,
+                        itemMarkHeight: markH,
+                        labelStyle: {
+                          fontSize: markFont,
+                        },
+                      },
                 }}
                 width={width}
-                height={250}   
+                height={height}
                 sx={{
                   [`& .${pieArcLabelClasses.root}`]: {
                     fill: "white",
@@ -73,10 +109,23 @@ export default function PieChars() {
               <Divider sx={{ pt: 4 }} />
               <Grid container columnSpacing={1} sx={{ mt: 4, pl: 3 }}>
                 {data.map((name, index) => (
-                  <Grid item xs={6} key={name.label}>
-                    <Typography sx={{fontSize:{xs:13, sm:15}}} className="list-disc  ">
-                      {index + 1}. {name.label} Tickets-{name.value}
-                    </Typography>
+                  <Grid item xs={12} md={6} key={name.label}>
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <Box
+                        sx={{
+                          width: 10,
+                          height: 10,
+                          borderRadius: "50%",
+                          backgroundColor: name.color,
+                        }}
+                      />
+                      <Typography
+                        sx={{ fontSize: { xs: 13, sm: 15 } }}
+                        className="list-disc"
+                      >
+                        {name.label} Tickets-{name.value}
+                      </Typography>
+                    </Stack>
                   </Grid>
                 ))}
               </Grid>

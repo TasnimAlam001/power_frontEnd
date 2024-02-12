@@ -13,12 +13,10 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { FaUserAlt } from "react-icons/fa";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { Stack } from "@mui/material";
+import { Badge, Stack } from "@mui/material";
+import CircleNotificationsOutlinedIcon from "@mui/icons-material/CircleNotificationsOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 export default function Profile() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -34,16 +32,15 @@ export default function Profile() {
     setArrow(false);
   };
   return (
-    <React.Fragment>
+    <div>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip title="Account settings">
           <IconButton
             // className="rounded-md hover:bg-green-100"
             onClick={handleClick}
-            
             size="small"
             sx={{
-              ml: 4,
+              
               "&:hover": { backgroundColor: "#e1e1e3" },
               borderRadius: 2,
             }}
@@ -55,13 +52,15 @@ export default function Profile() {
               <FaUserAlt />
             </Avatar>
 
-            <Box pl={1}>
+            <Box sx={{ display: { xs: "none", sm: "block" } }} pl={1}>
               <Stack direction="row" variant="body2" spacing={2}>
                 Super Admin
                 {arrow ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </Stack>
               {/* <h2 className="text-sm flex gap-2"> </h2> */}
-              <Typography variant="caption" component="">admin@gmail.com</Typography>
+              <Typography variant="caption" component="">
+                admin@gmail.com
+              </Typography>
             </Box>
           </IconButton>
         </Tooltip>
@@ -102,11 +101,31 @@ export default function Profile() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
+       
         <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
+          <AccountCircleOutlinedIcon fontSize="large" sx={{ pr: 0.5 }} />{" "}
+          <Box sx={{ display: { xs: "block", sm: "none" } }} pl={1}>
+            <Typography sx={{fontWeight: 550}} variant="body2" spacing={2}>
+              Super Admin
+            </Typography>
+            {/* <h2 className="text-sm flex gap-2"> </h2> */}
+            <Typography sx={{fontSize: 10}} variant="caption" component="caption">
+              admin@gmail.com
+            </Typography>
+          </Box>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Avatar /> My account
+          <AccountCircleOutlinedIcon fontSize="large" sx={{ pr: 0.5 }} /> My
+          account
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Badge badgeContent={4} color="info">
+            <CircleNotificationsOutlinedIcon
+              fontSize="large"
+              sx={{ pr: 0.5 }}
+            />{" "}
+          </Badge>{" "}
+          Notification
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>
@@ -128,6 +147,6 @@ export default function Profile() {
           Logout
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </div>
   );
 }

@@ -81,7 +81,7 @@ export default function AreaCharts() {
             justifyContent="space-between"
           >
             <CardContent>
-              <Typography variant="h5">Total Tickets</Typography>
+              <Typography variant="h6">Utility Wise Long Pending Opened Tickets</Typography>
               <Stack sx={{ mt: 3, pl: 2 }} direction="row" alignItems="center">
                 <LineChart
                   margin={{

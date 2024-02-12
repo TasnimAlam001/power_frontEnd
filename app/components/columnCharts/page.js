@@ -81,7 +81,7 @@ export default function ColumnCharts() {
             justifyContent="space-between"
           >
             <CardContent sx={{ alignContent: "end" }}>
-              <Typography variant="h5">Total Tickets</Typography>
+              <Typography variant="h6">Long Pending Tickets Categories</Typography>
               <Stack
                 sx={{ pl: 0, textAlign: "right" }}
                 direction="row"

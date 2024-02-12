@@ -41,6 +41,7 @@ import { GiWallet } from "react-icons/gi";
 import Image from "next/image";
 import logo from "@/public/logo2.png";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
+import Profile from "@/app/profile/page";
 
 const data = [
   { icon: <FaUser />, label: "Executive" },
@@ -171,7 +172,7 @@ export default function NavBarDrawer({ children }) {
                     sx={{
                       cursor: "pointer",
 
-                      padding: "7px", // Add padding to the icon
+                      padding: "7px",
                       transition: "background-color ",
                       "&:hover": {
                         backgroundColor: "#e1e1e3",
@@ -188,7 +189,7 @@ export default function NavBarDrawer({ children }) {
                     sx={{
                       cursor: "pointer",
 
-                      padding: "7px", // Add padding to the icon
+                      padding: "7px", 
                       transition: "background-color ",
                       "&:hover": {
                         backgroundColor: "#e1e1e3",
@@ -198,26 +199,8 @@ export default function NavBarDrawer({ children }) {
                   >
                     <FaRegMoon />
                   </Typography>
-                  <Typography
-                    lineHeight={0}
-                    gutterBottom={false}
-                    color="black"
-                    sx={{
-                      cursor: "pointer",
-
-                      padding: "7px", // Add padding to the icon
-                      transition: "background-color ",
-                      "&:hover": {
-                        backgroundColor: "#e1e1e3",
-                        borderRadius: "100%",
-                      },
-                    }}
-                  >
-                    <Badge badgeContent={4} color="info">
-                      <FaBell />
-                    </Badge>
-                  </Typography>
-                  {/* <Profile></Profile> */}
+                 
+                  <Profile></Profile>
                 </Stack>
               </Stack>
             </Toolbar>
