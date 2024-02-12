@@ -33,6 +33,8 @@ export default function PieChars() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const width = isSmallScreen ? 360 : 410;
+  const markH = isSmallScreen ? 9 : 15;
+  const markFont = isSmallScreen ? 14 : 18;
 
   return (
     <ThemeProvider theme={theme}>
@@ -50,6 +52,15 @@ export default function PieChars() {
                     arcLabel: getArcLabel,
                   },
                 ]}
+                slotProps={{
+                  legend: {
+                    itemMarkWidth: markH,
+                    itemMarkHeight: markH,
+                    labelStyle:{
+                      fontSize:14
+                    }
+                  }
+                }}
                 width={width}
                 height={250}   
                 sx={{

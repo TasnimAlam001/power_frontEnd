@@ -68,7 +68,7 @@ export default function ColumnCharts() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const width = isSmallScreen ? 270 : 500;
-  const height = isSmallScreen ? 300 : 400;
+  const height = isSmallScreen ? 300 : 380;
   const fontS = isSmallScreen ? 9 : 12;
   const boxHeight = isSmallScreen ? 400 : 460;
   return (
@@ -76,7 +76,7 @@ export default function ColumnCharts() {
       <div>
         <Card>
           <Stack
-            sx={{ height: {boxHeight} }}
+            sx={{ height: boxHeight }}
             direction="column"
             justifyContent="space-between"
           >

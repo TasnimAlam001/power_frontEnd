@@ -74,7 +74,7 @@ export default function BarCharts() {
         </Box>
         <Card>
           <Stack
-            sx={{ height: {boxHeight} }}
+            sx={{ height: boxHeight }}
             direction="column"
             justifyContent="space-between"
           >

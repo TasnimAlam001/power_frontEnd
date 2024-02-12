@@ -76,7 +76,7 @@ export default function AreaCharts() {
         </Box>
         <Card>
           <Stack
-            sx={{ height: { boxHeight } }}
+            sx={{ height:  boxHeight }}
             direction="column"
             justifyContent="space-between"
           >
@@ -88,6 +88,7 @@ export default function AreaCharts() {
                     top: 70,
                     left: 45,
                     right: 25,
+                    bottom:30
                   }}
                   width={width}
                   height={height}
