@@ -56,6 +56,8 @@ export default function BarCharts() {
 
   const width = isSmallScreen ? 360 : 600;
   const height = isSmallScreen ? 330 : 400;
+  const fontS = isSmallScreen ? 9 : 12;
+  const boxHeight = isSmallScreen ? 400 : 460;
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ position: "relative" }}>
@@ -72,7 +74,7 @@ export default function BarCharts() {
         </Box>
         <Card>
           <Stack
-            sx={{ height: 460 }}
+            sx={{ height: {boxHeight} }}
             direction="column"
             justifyContent="space-between"
           >
@@ -80,13 +82,22 @@ export default function BarCharts() {
               <Typography variant="h5">Total Tickets</Typography>
               <Stack sx={{mt:3}} direction="row" alignItems="center">
                 <BarChart
+                margin={{
+                  top:60,
+                  bottom:90,
+                  right:20
+                }}
                   width={width}
                   height={height}
                   series={[
                     { data: openedData, label: "Opened", id: "openedId", color: "#04984A" },
                     { data: solvedData, label: "Solved", id: "solvedId" , color: "#3382EF"},
                   ]}
-                  xAxis={[{ data: xLabels, scaleType: "band" }]}
+                  xAxis={[{ data: xLabels, scaleType: "band" ,
+                  tickLabelStyle: {
+                    fontSize: fontS,
+                  },
+                }]}
                 />
               </Stack>
             </CardContent>

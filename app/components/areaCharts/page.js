@@ -50,7 +50,7 @@ export default function AreaCharts() {
 
   const width = isSmallScreen ? 350 : 500;
   const height = isSmallScreen ? 300 : 340;
-  const boxheight = isSmallScreen ? 400 : 460;
+  const boxHeight = isSmallScreen ? 400 : 460;
   // const value = isSmallScreen ? 10 : 1;
 
   return (
@@ -58,7 +58,6 @@ export default function AreaCharts() {
       <Box sx={{ position: "relative" }}>
         <Box
           sx={{
-            
             position: "absolute",
             left: "-15px",
             top: "50%",
@@ -67,7 +66,6 @@ export default function AreaCharts() {
         >
           <Typography
             sx={{
-        
               transform: "rotate(-90deg)",
               display: "block",
               textAlign: "center",
@@ -78,14 +76,19 @@ export default function AreaCharts() {
         </Box>
         <Card>
           <Stack
-            sx={{ height: {boxheight} }}
+            sx={{ height: { boxHeight } }}
             direction="column"
             justifyContent="space-between"
           >
             <CardContent>
               <Typography variant="h5">Total Tickets</Typography>
-              <Stack sx={{ mt: 3, pl:2 }} direction="row" alignItems="center">
+              <Stack sx={{ mt: 3, pl: 2 }} direction="row" alignItems="center">
                 <LineChart
+                  margin={{
+                    top: 70,
+                    left: 45,
+                    right: 25,
+                  }}
                   width={width}
                   height={height}
                   series={[
@@ -101,28 +104,31 @@ export default function AreaCharts() {
                       },
                     },
                   ]}
-                  xAxis={[{ scaleType: "point", data: xLabels ,
-                  tickLabelStyle: {
-                    // angle: {value},
-                   
-                    fontSize: 10,
-                  },            
-                }]}
+                  xAxis={[
+                    {
+                      scaleType: "point",
+                      data: xLabels,
+                      tickLabelStyle: {
+                        // angle: {value},
 
-                // bottomAxis={{
-                //   labelStyle: {
-                //     fontSize: 14,
-                //     // transform: `translateY(${
-                //     //       // Hack that should be added in the lib latter.
-                //     //       5 * Math.abs(Math.sin((Math.PI * props.angle) / 180))
-                //     //     }px)`
-                //   },
-                //   tickLabelStyle: {
-                //     angle: 90,
-                //     textAnchor: 'start',
-                //     fontSize: 12,
-                //   },
-                // }}
+                        fontSize: 10,
+                      },
+                    },
+                  ]}
+                  // bottomAxis={{
+                  //   labelStyle: {
+                  //     fontSize: 14,
+                  //     // transform: `translateY(${
+                  //     //       // Hack that should be added in the lib latter.
+                  //     //       5 * Math.abs(Math.sin((Math.PI * props.angle) / 180))
+                  //     //     }px)`
+                  //   },
+                  //   tickLabelStyle: {
+                  //     angle: 90,
+                  //     textAnchor: 'start',
+                  //     fontSize: 12,
+                  //   },
+                  // }}
 
                   sx={{
                     "& path": {
