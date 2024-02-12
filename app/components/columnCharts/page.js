@@ -14,15 +14,18 @@ import {
 } from "@mui/material";
 import styled from "@emotion/styled";
 
-const theme = createTheme();
-// const chartSetting = {
-//   xAxis: [
-//     {
-//       label: "rainfall (mm)",
-//     },
-//   ],
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 425,
+      md: 600,
+      lg: 1100,
+      xl: 1440,
+    },
+  },
+});
 
-// };
 const dataset = [
   {
     name: "Recharge Related",
@@ -56,21 +59,20 @@ const dataset = [
 
 const valueFormatter = (value) => `${value}mm`;
 
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: "center",
-//   color: theme.palette.text.secondary,
-// }));
-
 export default function ColumnCharts() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isLgScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const width = isSmallScreen ? 270 : 500;
-  const height = isSmallScreen ? 300 : 380;
-  const fontS = isSmallScreen ? 9 : 12;
-  const boxHeight = isSmallScreen ? 400 : 460;
+  const width = isSmallScreen? 170 : isMediumScreen ? 280 : isLgScreen ? 460: 500;
+  const height = isMediumScreen ? (isSmallScreen ? 290 : 330) : 400;
+  const boxHeight = isMediumScreen ? (isSmallScreen ? 400 : 430) : 460;
+  const fontS = isMediumScreen ? 8 : 12;
+
+  // const width = isSmallScreen ? 270 : 500;
+  // const height = isSmallScreen ? 300 : 380;
+  // const fontS = isSmallScreen ? 9 : 12;
+  // const boxHeight = isSmallScreen ? 400 : 460;
   return (
     <ThemeProvider theme={theme}>
       <div>
@@ -91,7 +93,8 @@ export default function ColumnCharts() {
                 
                   <BarChart
                     margin={{
-                      right:0
+                      right:0,
+                      
                     }}
                     width={width}
                     height={height}

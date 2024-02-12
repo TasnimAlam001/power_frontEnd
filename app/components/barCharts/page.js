@@ -70,7 +70,7 @@ export default function BarCharts() {
   // const height = isSmallScreen ? 330 : 400;
   const width = isSmallScreen? 260 : isMediumScreen ? 360 : isLgScreen ? 560: 599;
   const height = isMediumScreen ? (isSmallScreen ? 290 : 330) : 400;
-  const boxHeight = isMediumScreen ? (isSmallScreen ? 370 : 460) : 460;
+  const boxHeight = isMediumScreen ? (isSmallScreen ? 410 : 460) : 460;
   const fontS = isSmallScreen ? 9 : 12;
   // const boxHeight = isSmallScreen ? 400 : 460;
   return (

@@ -10,10 +10,20 @@ import {
   createTheme,
   useMediaQuery,
 } from "@mui/material";
-import { curveCardinal } from "d3-shape";
+
 import { LineChart } from "@mui/x-charts";
 
-const theme = createTheme();
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 425,
+      md: 600,
+      lg: 1100,
+      xl: 1440,
+    },
+  },
+});
 const data = [
   {
     name: "BPDP",
@@ -40,18 +50,25 @@ const data = [
     uv: 520,
   },
 ];
-const cardinal = curveCardinal.tension(0.2);
+
 
 const openedData = data.map((item) => item.uv);
 const xLabels = data.map((item) => item.name);
 
 export default function AreaCharts() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isLgScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const width = isSmallScreen ? 350 : 500;
-  const height = isSmallScreen ? 300 : 340;
-  const boxHeight = isSmallScreen ? 400 : 460;
+  // const width = isSmallScreen ? 350 : 500;
+  // const height = isSmallScreen ? 300 : 340;
+  // const boxHeight = isSmallScreen ? 400 : 460;
   // const value = isSmallScreen ? 10 : 1;
+
+  const width = isSmallScreen? 250 : isMediumScreen ? 360 : isLgScreen ? 560: 599;
+  const height = isMediumScreen ? (isSmallScreen ? 280 : 330) : 400;
+  const boxHeight = isMediumScreen ? (isSmallScreen ? 399 : 460) : 460;
+  const fontS = isMediumScreen ? 10 : 15;
 
   return (
     <ThemeProvider theme={theme}>
@@ -61,7 +78,7 @@ export default function AreaCharts() {
             position: "absolute",
             left: "-15px",
             top: "50%",
-            display: { xs: "none", sm: "block" },
+            display: { xs: "none", md: "block" },
           }}
         >
           <Typography
@@ -82,20 +99,20 @@ export default function AreaCharts() {
           >
             <CardContent>
               <Typography variant="h6">Utility Wise Long Pending Opened Tickets</Typography>
-              <Stack sx={{ mt: 3, pl: 2 }} direction="row" alignItems="center">
+              <Stack sx={{ mt: 3, pl: {md:2} }} direction="row" alignItems="center">
                 <LineChart
                   margin={{
                     top: 70,
-                    left: 45,
-                    right: 25,
-                    bottom:30
+                    left: isMediumScreen?30: 55,
+                    right: 35,
+                    bottom:60
                   }}
                   width={width}
                   height={height}
                   series={[
                     {
                       data: openedData,
-                      label: "uv",
+                      label: "Opened Tickets",
                       area: true,
                       showMark: true,
 
@@ -110,9 +127,9 @@ export default function AreaCharts() {
                       scaleType: "point",
                       data: xLabels,
                       tickLabelStyle: {
-                        // angle: {value},
-
-                        fontSize: 10,
+                        angle: isMediumScreen? 70: 0,
+                        textAnchor: isMediumScreen? 'start': 'middle',
+                        fontSize: fontS,
                       },
                     },
                   ]}

@@ -3,9 +3,8 @@ import { Grid, ThemeProvider, createTheme } from "@mui/material";
 import React from "react";
 import PieChars from "../pieCharts/page";
 import BarCharts from "../barCharts/page";
-// import BarCharts from '../barCharts/page'
-// import AreaCharts from '../areaCharts/page'
-// import ColumnCharts from '../columnCharts/page'
+import AreaCharts from '../areaCharts/page'
+import ColumnCharts from '../columnCharts/page'
 const theme = createTheme({
   breakpoints: {
     values: {
@@ -28,12 +27,12 @@ export default function AllCharts() {
         <Grid item xs={12} lg={7}>
             <BarCharts/>
         </Grid>
-        {/* <Grid item xs={12} sm={5}>
+        <Grid item xs={12} lg={5}>
             <AreaCharts/>
         </Grid>
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} lg={7}>
             <ColumnCharts/>
-        </Grid> */}
+        </Grid>
       </Grid>
     </ThemeProvider>
   );
