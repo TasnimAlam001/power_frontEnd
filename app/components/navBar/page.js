@@ -19,8 +19,8 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import SettingsOverscanIcon from '@mui/icons-material/SettingsOverscan';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import SettingsOverscanIcon from "@mui/icons-material/SettingsOverscan";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
@@ -44,15 +44,16 @@ import Image from "next/image";
 import logo from "@/public/logo2.png";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
 import Profile from "../profile/page";
+import Link from "next/link";
 
 const data = [
-  { icon: <FaUser />, label: "Executive" },
-  { icon: <RiLightbulbFlashFill />, label: "Utilities" },
-  { icon: <FaMapMarkerAlt />, label: "Zone" },
-  { icon: <TbBulbFilled />, label: "S & D List" },
-  { icon: <FaUsers />, label: "Users" },
-  { icon: <GiWallet />, label: "All Tickets" },
-  { icon: <FaSignOutAlt />, label: "Logout" },
+  {id:1, icon: <FaUser />, label: "Executive", route: "executive" },
+  {id:2, icon: <RiLightbulbFlashFill />, label: "Utilities", route: "utility" },
+  {id:3, icon: <FaMapMarkerAlt />, label: "Zone", route: "executive" },
+  {id:4, icon: <TbBulbFilled />, label: "S & D List", route: "executive" },
+  {id:5, icon: <FaUsers />, label: "Users", route: "executive" },
+  {id:6, icon: <GiWallet />, label: "All Tickets", route: "executive" },
+  {id:7, icon: <FaSignOutAlt />, label: "Logout", route: "executive" },
 ];
 
 const drawerWidth = 200;
@@ -78,32 +79,36 @@ export default function NavBarDrawer({ children }) {
 
   const drawer = (
     <div>
-      <Stack direction="row" height={70} pl={2} pt={4}>
-        <Image
-          src={logo}
-          width={50}
-          // className="w-[70px] pl-4"
-          alt="ministry of power energy and mineral resources bangladesh logo"
-        ></Image>
-        <Typography variant="caption" pl={1} component="h6">
-          Ministry of Power Energy & Mineral Resources
-        </Typography>
-      </Stack>
+      <Link href="/">
+        <Stack direction="row" height={70} pl={2} pt={4}>
+          <Image
+            src={logo}
+            width={50}
+            // className="w-[70px] pl-4"
+            alt="ministry of power energy and mineral resources bangladesh logo"
+          ></Image>
+          <Typography variant="caption" pl={1} component="h6">
+            Ministry of Power Energy & Mineral Resources
+          </Typography>
+        </Stack>
+      </Link>
       <Toolbar />
- 
+
       <List sx={{ pl: 2 }}>
         {data.map((item) => (
-          <ListItemButton key={item.label} sx={{ py: 0, minHeight: 38 }}>
-            <ListItemIcon sx={{ color: "inherit" }}>{item.icon}</ListItemIcon>
-            <ListItemText
-              sx={{ ml: -2 }}
-              primary={item.label}
-              primaryTypographyProps={{
-                fontSize: 13,
-                fontWeight: "medium",
-              }}
-            />
-          </ListItemButton>
+          <Link key={item.label} href={`/${item.route}`}>
+            <ListItemButton sx={{ py: 0, minHeight: 38 }}>
+              <ListItemIcon sx={{ color: "inherit" }}>{item.icon}</ListItemIcon>
+              <ListItemText
+                sx={{ ml: -2 }}
+                primary={item.label}
+                primaryTypographyProps={{
+                  fontSize: 13,
+                  fontWeight: "medium",
+                }}
+              />
+            </ListItemButton>
+          </Link>
         ))}
       </List>
     </div>
@@ -131,7 +136,6 @@ export default function NavBarDrawer({ children }) {
             ml: { sm: `${drawerWidth}px` },
           }}
         >
-         
           <Toolbar>
             <Stack
               direction="row"
@@ -207,7 +211,7 @@ export default function NavBarDrawer({ children }) {
               </Stack>
             </Stack>
           </Toolbar>
-          <Divider/>
+          <Divider />
         </AppBar>
         {/* ------------------------------------------side drawer------------------------------- */}
 
@@ -258,12 +262,8 @@ export default function NavBarDrawer({ children }) {
             {drawer}
           </Drawer>
         </Box>
-        
-        <Box
-          px={{ xs: 2, sm: 6 }}
-          component="main"
-          sx={{ flexGrow: 1, pt: 3,}}
-        >
+
+        <Box px={{ xs: 2, sm: 6 }} component="main" sx={{ flexGrow: 1, pt: 3 }}>
           <Toolbar />
           {children}
         </Box>

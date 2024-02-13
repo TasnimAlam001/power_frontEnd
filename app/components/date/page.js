@@ -5,26 +5,29 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Box, Button, Stack, ThemeProvider, Typography } from "@mui/material";
 import theme from "@/app/theme";
+// import theme from "@/app/theme";
 
 export default function Date() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: { xs: "none", sm: "block" } }}>
         <Stack direction="row" spacing={3} alignItems="center" width={550}>
-          <Typography variant="body2">From</Typography>
+          
           <Box>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Stack direction="row" spacing={3} alignItems="center">
                 <DatePicker
+                label="From"
                   slotProps={{
                     textField: { size: "small", color: "success" },
                     openPickerButton: { color: "success" },
                   }}
                 />{" "}
-                <Typography variant="body2">To </Typography>
+                <Typography sx={{color: 'success.main'}}>-</Typography>
                 <DatePicker
+                label="To"
                   slotProps={{
-                    textField: { size: "small", color: "success" },
+                    textField: { size: "small", color: "success",},
                     openPickerButton: { color: "success" },
                   }}
                 />
