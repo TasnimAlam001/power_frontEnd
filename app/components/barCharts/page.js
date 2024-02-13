@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import * as React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import {
@@ -12,6 +12,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import theme from "@/app/theme";
+import { red } from "@mui/material/colors";
+import { axisClasses } from "@mui/x-charts";
+// import { Label } from "@mui/icons-material";
 
 // const theme = createTheme({
 //   breakpoints: {
@@ -24,7 +27,19 @@ import theme from "@/app/theme";
 //     },
 //   },
 // });
+const chartSetting = {
+  yAxis: [
+    {
+      label: 'Ticket Count',
+    },
+  ],
 
+  sx: {
+    [`.${axisClasses.left} .${axisClasses.label}`]: {
+      transform: 'translate(-20px, 0)',
+    },
+  },
+};
 const data = [
   {
     name: "BPDB",
@@ -69,7 +84,13 @@ export default function BarCharts() {
 
   // const width = isSmallScreen ? 360 : 600;
   // const height = isSmallScreen ? 330 : 400;
-  const width = isSmallScreen? 260 : isMediumScreen ? 360 : isLgScreen ? 560: 599;
+  const width = isSmallScreen
+    ? 260
+    : isMediumScreen
+    ? 360
+    : isLgScreen
+    ? 560
+    : 599;
   const height = isMediumScreen ? (isSmallScreen ? 290 : 330) : 400;
   const boxHeight = isMediumScreen ? (isSmallScreen ? 410 : 460) : 460;
   const fontS = isSmallScreen ? 9 : 12;
@@ -77,7 +98,7 @@ export default function BarCharts() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ position: "relative" }}>
-        <Box
+        {/* <Box
           sx={{
             position: "absolute",
             left: "-15px",
@@ -94,7 +115,7 @@ export default function BarCharts() {
           >
             Ticket Count
           </Typography>
-        </Box>
+        </Box> */}
         <Card>
           <Stack
             sx={{ height: boxHeight }}
@@ -111,7 +132,7 @@ export default function BarCharts() {
                     top: 60,
                     bottom: 90,
                     right: 20,
-                  
+                    left: 20,
                   }}
                   width={width}
                   height={height}
@@ -130,26 +151,28 @@ export default function BarCharts() {
                     },
                   ]}
                   slotProps={{
-                    legend:{
+                    legend: {
                       itemMarkHeight: 9,
-                      itemMarkWidth:9,
+                      itemMarkWidth: 9,
                       labelStyle: {
                         fontSize: 15,
                       },
-                    }
+                    },
                   }}
                   xAxis={[
                     {
                       data: xLabels,
-                      
+
                       scaleType: "band",
                       tickLabelStyle: {
-                        angle: isMediumScreen? 90: 0,
-                        textAnchor: 'start',
+                        angle: isMediumScreen ? 90 : 0,
+                        textAnchor: "start",
                         fontSize: fontS,
                       },
                     },
                   ]}
+                 {...chartSetting}
+                
                 />
               </Stack>
             </CardContent>

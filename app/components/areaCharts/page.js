@@ -11,7 +11,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-import { LineChart } from "@mui/x-charts";
+import { LineChart, axisClasses } from "@mui/x-charts";
 import theme from "@/app/theme";
 
 // const theme = createTheme({
@@ -25,6 +25,14 @@ import theme from "@/app/theme";
 //     },
 //   },
 // });
+const chartSetting = {
+  yAxis: [
+    {
+      label: 'Ticket Count',
+    },
+  ],
+
+};
 const data = [
   {
     name: "BPDP",
@@ -74,7 +82,7 @@ export default function AreaCharts() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ position: "relative" }}>
-        <Box
+        {/* <Box
           sx={{
             position: "absolute",
             left: "-15px",
@@ -91,7 +99,7 @@ export default function AreaCharts() {
           >
             Ticket Count
           </Typography>
-        </Box>
+        </Box> */}
         <Card>
           <Stack
             sx={{ height:  boxHeight }}
@@ -102,9 +110,10 @@ export default function AreaCharts() {
               <Typography variant="h6">Utility Wise Long Pending Opened Tickets</Typography>
               <Stack sx={{ mt: 3, pl: {md:2} }} direction="row" alignItems="center">
                 <LineChart
+                 
                   margin={{
                     top: 70,
-                    left: isMediumScreen?30: 55,
+                    left: isMediumScreen?30: 75,
                     right: 35,
                     bottom:60
                   }}
@@ -165,7 +174,12 @@ export default function AreaCharts() {
                     ".MuiLineElement-root": {
                       display: "none",
                     },
+                    [`.${axisClasses.left} .${axisClasses.label}`]: {
+                      transform: 'translate(-20px, 0)',
+                    },
+
                   }}
+                  {...chartSetting}
                 >
                   <defs>
                     <linearGradient

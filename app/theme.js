@@ -1,4 +1,6 @@
-const { createTheme } = require("@mui/material");
+// const { createTheme } = require("@mui/material");
+"use client"
+import { createTheme } from "@mui/material";
 
 const theme = createTheme({
     breakpoints: {
@@ -10,6 +12,21 @@ const theme = createTheme({
         xl: 1440,
       },
     },
+
+    palette: {
+      mode:"light",
+      primary:{
+        main: "#3382EF",
+     
+      },
+      success: {
+        main: "#04984A",
+        light: "#dbf2d5",
+        dark: "#1b5e20"
+      },
+
+
+    }
   });
 
   export default theme;

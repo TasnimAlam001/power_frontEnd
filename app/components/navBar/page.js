@@ -19,12 +19,14 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import SettingsOverscanIcon from '@mui/icons-material/SettingsOverscan';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { styled, useTheme } from "@mui/material/styles";
+import { ThemeProvider, styled, useTheme } from "@mui/material/styles";
 import {
   FaBell,
   FaExpand,
@@ -42,7 +44,6 @@ import Image from "next/image";
 import logo from "@/public/logo2.png";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
 import Profile from "../profile/page";
-
 
 const data = [
   { icon: <FaUser />, label: "Executive" },
@@ -120,93 +121,95 @@ export default function NavBarDrawer({ children }) {
     <div>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-          {/* --------------------------------------------------nav------------------------------ */}
-          <AppBar
-            color="inherit"
-            variant="none"
-            position="fixed"
-            sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-                ml: { sm: `${drawerWidth}px` },
-              }}
-          >
-            <Toolbar>
+        {/* --------------------------------------------------nav------------------------------ */}
+        <AppBar
+          color="inherit"
+          variant="none"
+          position="fixed"
+          sx={{
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            ml: { sm: `${drawerWidth}px` },
+          }}
+        >
+         
+          <Toolbar>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              sx={{ width: "100%" }}
+            >
+              <Stack direction="row" alignItems="center">
+                <FormatAlignLeftIcon
+                  // color="inherit"
+                  aria-label="open drawer"
+                  edge="start"
+                  onClick={handleDrawerToggle}
+                  sx={{ mr: 2, display: { sm: "none" } }}
+                />
+
+                <TextField
+                  sx={{ ml: 4, display: { xs: "none", sm: "block" } }}
+                  placeholder="Search.."
+                  size="small"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        {" "}
+                        <FaSearch />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Stack>
+
               <Stack
                 direction="row"
-                justifyContent="space-between"
-                sx={{ width: "100%" }}
+                alignItems="center"
+                justifyContent="center"
+                spacing={1}
               >
-                <Stack direction="row" alignItems="center">
-                  <FormatAlignLeftIcon
-                    // color="inherit"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { sm: "none" } }}
-                  />
+                <Typography
+                  lineHeight={0}
+                  gutterBottom={false}
+                  // color="black"
+                  sx={{
+                    cursor: "pointer",
 
-                  <TextField
-                    sx={{ ml: 4, display: { xs: "none", sm: "block" }, }}
-                    placeholder="Search.."
-                    size="small"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          {" "}
-                          <FaSearch />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Stack>
-
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  spacing={1}
+                    padding: "7px",
+                    transition: "background-color ",
+                    "&:hover": {
+                      backgroundColor: "#e1e1e3",
+                      borderRadius: "100%",
+                    },
+                  }}
                 >
-                  <Typography
-                    lineHeight={0}
-                    gutterBottom={false}
-                    color="black"
-                    sx={{
-                      cursor: "pointer",
+                  <SettingsOverscanIcon />
+                </Typography>
+                <Typography
+                  lineHeight={0}
+                  gutterBottom={false}
+                  // color="black"
+                  sx={{
+                    cursor: "pointer",
 
-                      padding: "7px",
-                      transition: "background-color ",
-                      "&:hover": {
-                        backgroundColor: "#e1e1e3",
-                        borderRadius: "100%",
-                      },
-                    }}
-                  >
-                    <FaExpand />
-                  </Typography>
-                  <Typography
-                    lineHeight={0}
-                    gutterBottom={false}
-                    color="black"
-                    sx={{
-                      cursor: "pointer",
+                    padding: "7px",
+                    transition: "background-color ",
+                    "&:hover": {
+                      backgroundColor: "#e1e1e3",
+                      borderRadius: "100%",
+                    },
+                  }}
+                >
+                  <DarkModeOutlinedIcon />
+                </Typography>
 
-                      padding: "7px", 
-                      transition: "background-color ",
-                      "&:hover": {
-                        backgroundColor: "#e1e1e3",
-                        borderRadius: "100%",
-                      },
-                    }}
-                  >
-                    <FaRegMoon />
-                  </Typography>
-                 
-                  <Profile></Profile>
-                </Stack>
+                <Profile></Profile>
               </Stack>
-            </Toolbar>
-          </AppBar>
-          {/* ------------------------------------------side drawer------------------------------- */}
+            </Stack>
+          </Toolbar>
+          <Divider/>
+        </AppBar>
+        {/* ------------------------------------------side drawer------------------------------- */}
 
         <Box
           component="nav"
@@ -255,14 +258,15 @@ export default function NavBarDrawer({ children }) {
             {drawer}
           </Drawer>
         </Box>
+        
         <Box
-        px={{xs:2, sm:6}}
-            component="main"
-            sx={{ flexGrow: 1, pt: 3, backgroundColor: "#f2f5f5",}}
-          >
-            <Toolbar />
-            {children}
-          </Box>
+          px={{ xs: 2, sm: 6 }}
+          component="main"
+          sx={{ flexGrow: 1, pt: 3,}}
+        >
+          <Toolbar />
+          {children}
+        </Box>
       </Box>
     </div>
   );
