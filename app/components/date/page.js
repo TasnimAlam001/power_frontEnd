@@ -10,7 +10,7 @@ import theme from "@/app/theme";
 export default function Date() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: { xs: "none", sm: "block" } }}>
+      <Box sx={{ display: { xs: "none", md: "block" } }}>
         <Stack direction="row" spacing={3} alignItems="center" width={550}>
           
           <Box>

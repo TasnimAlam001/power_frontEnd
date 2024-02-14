@@ -15,17 +15,6 @@ import {
 import styled from "@emotion/styled";
 import theme from "@/app/theme";
 
-// const theme = createTheme({
-//   breakpoints: {
-//     values: {
-//       xs: 0,
-//       sm: 425,
-//       md: 600,
-//       lg: 1100,
-//       xl: 1440,
-//     },
-//   },
-// });
 
 const dataset = [
   {
@@ -58,14 +47,14 @@ const dataset = [
   },
 ];
 
-const valueFormatter = (value) => `${value}mm`;
+// const valueFormatter = (value) => `${value}mm`;
 
 export default function ColumnCharts() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isLgScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const width = isSmallScreen? 170 : isMediumScreen ? 280 : isLgScreen ? 460: 500;
+  const width = isSmallScreen? 170 : isMediumScreen ? 280 : isLgScreen ? 510: 470;
   const height = isMediumScreen ? (isSmallScreen ? 290 : 330) : 400;
   const boxHeight = isMediumScreen ? (isSmallScreen ? 400 : 430) : 460;
   const fontS = isMediumScreen ? 8 : 12;
@@ -75,7 +64,7 @@ export default function ColumnCharts() {
   // const fontS = isSmallScreen ? 9 : 12;
   // const boxHeight = isSmallScreen ? 400 : 460;
   return (
-    <ThemeProvider theme={theme}>
+
       <div>
         <Card>
           <Stack
@@ -123,6 +112,6 @@ export default function ColumnCharts() {
           </Stack>
         </Card>
       </div>
-    </ThemeProvider>
+
   );
 }

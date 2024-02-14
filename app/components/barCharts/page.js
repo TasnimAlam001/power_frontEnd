@@ -8,25 +8,13 @@ import {
   Stack,
   ThemeProvider,
   Typography,
-  createTheme,
+
   useMediaQuery,
 } from "@mui/material";
 import theme from "@/app/theme";
-import { red } from "@mui/material/colors";
 import { axisClasses } from "@mui/x-charts";
-// import { Label } from "@mui/icons-material";
 
-// const theme = createTheme({
-//   breakpoints: {
-//     values: {
-//       xs: 0,
-//       sm: 425,
-//       md: 600,
-//       lg: 1100,
-//       xl: 1440,
-//     },
-//   },
-// });
+
 const chartSetting = {
   yAxis: [
     {
@@ -85,37 +73,18 @@ export default function BarCharts() {
   // const width = isSmallScreen ? 360 : 600;
   // const height = isSmallScreen ? 330 : 400;
   const width = isSmallScreen
-    ? 260
-    : isMediumScreen
-    ? 360
+    ? 215    : isMediumScreen
+    ? 315
     : isLgScreen
-    ? 560
-    : 599;
+    ? 580
+    : 520;
   const height = isMediumScreen ? (isSmallScreen ? 290 : 330) : 400;
   const boxHeight = isMediumScreen ? (isSmallScreen ? 410 : 460) : 460;
   const fontS = isSmallScreen ? 9 : 12;
   // const boxHeight = isSmallScreen ? 400 : 460;
   return (
-    <ThemeProvider theme={theme}>
+    
       <Box sx={{ position: "relative" }}>
-        {/* <Box
-          sx={{
-            position: "absolute",
-            left: "-15px",
-            top: "50%",
-            display: { xs: "none", md: "block" },
-          }}
-        >
-          <Typography
-            sx={{
-              transform: "rotate(-90deg)",
-              display: "block",
-              textAlign: "center",
-            }}
-          >
-            Ticket Count
-          </Typography>
-        </Box> */}
         <Card>
           <Stack
             sx={{ height: boxHeight }}
@@ -131,7 +100,7 @@ export default function BarCharts() {
                   margin={{
                     top: 60,
                     bottom: 90,
-                    right: 20,
+                    right: 0,
                     left: 20,
                   }}
                   width={width}
@@ -179,6 +148,6 @@ export default function BarCharts() {
           </Stack>
         </Card>
       </Box>
-    </ThemeProvider>
+    
   );
 }

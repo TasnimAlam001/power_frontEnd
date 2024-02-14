@@ -132,8 +132,8 @@ export default function NavBarDrawer({ children }) {
           variant="none"
           position="fixed"
           sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-            ml: { sm: `${drawerWidth}px` },
+            width: { md: `calc(100% - ${drawerWidth}px)` },
+            ml: { md: `${drawerWidth}px` },
           }}
         >
           <Toolbar>
@@ -148,11 +148,11 @@ export default function NavBarDrawer({ children }) {
                   aria-label="open drawer"
                   edge="start"
                   onClick={handleDrawerToggle}
-                  sx={{ mr: 2, display: { sm: "none" } }}
+                  sx={{ mr: 2, display: { md: "none" } }}
                 />
 
                 <TextField
-                  sx={{ ml: 4, display: { xs: "none", sm: "block" } }}
+                  sx={{ ml: 4, display: { xs: "none", md: "block" } }}
                   placeholder="Search.."
                   size="small"
                   InputProps={{
@@ -217,7 +217,7 @@ export default function NavBarDrawer({ children }) {
 
         <Box
           component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+          sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
           aria-label="mailbox folders"
         >
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -230,7 +230,7 @@ export default function NavBarDrawer({ children }) {
               keepMounted: true, // Better open performance on mobile.
             }}
             sx={{
-              display: { xs: "block", sm: "none" },
+              display: { xs: "block", md: "none" },
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
                 width: drawerWidth,
@@ -251,7 +251,7 @@ export default function NavBarDrawer({ children }) {
           <Drawer
             variant="permanent"
             sx={{
-              display: { xs: "none", sm: "block" },
+              display: { xs: "none", md: "block" },
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
                 width: drawerWidth,
@@ -263,7 +263,7 @@ export default function NavBarDrawer({ children }) {
           </Drawer>
         </Box>
 
-        <Box px={{ xs: 2, sm: 6 }} component="main" sx={{ flexGrow: 1, pt: 3 }}>
+        <Box px={{ xs: 2, md: 4 }} component="main" sx={{ flexGrow: 1, pt: 3 }}>
           <Toolbar />
           {children}
         </Box>

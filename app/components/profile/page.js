@@ -40,7 +40,6 @@ export default function Profile() {
             onClick={handleClick}
             size="small"
             sx={{
-              
               "&:hover": { backgroundColor: "#e1e1e3" },
               borderRadius: 2,
             }}
@@ -52,7 +51,7 @@ export default function Profile() {
               <FaUserAlt />
             </Avatar>
 
-            <Box sx={{ display: { xs: "none", sm: "block" } }} pl={1}>
+            <Box sx={{ display: { xs: "none", md: "block" } }} pl={1}>
               <Stack direction="row" variant="body2" spacing={2}>
                 Super Admin
                 {arrow ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -101,17 +100,25 @@ export default function Profile() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-       
-        <MenuItem sx={{ display: { xs: "block", sm: "none" } }} onClick={handleClose}>
-          <AccountCircleOutlinedIcon fontSize="large" sx={{ pr: 0.5 }} />{" "}
-          <Box sx={{ display: { xs: "block", sm: "none" } }} pl={1}>
-            <Typography sx={{fontWeight: 550}} variant="body2" spacing={2}>
-              Super Admin
-            </Typography>
-            {/* <h2 className="text-sm flex gap-2"> </h2> */}
-            <Typography sx={{fontSize: 10}} variant="caption" component="caption">
-              admin@gmail.com
-            </Typography>
+        <MenuItem
+          sx={{ display: { xs: "block", md: "none" } }}
+          onClick={handleClose}
+        >
+          <Box sx={{display: "flex"}} >
+            <AccountCircleOutlinedIcon fontSize="large" sx={{ pr: 0.5 }} />
+            <Box>
+              <Typography sx={{ fontWeight: 550 }} variant="body2" spacing={2}>
+                Super Admin
+              </Typography>
+              {/* <h2 className="text-md flex gap-2"> </h2> */}
+              <Typography
+                sx={{ fontSize: 10 }}
+                variant="caption"
+                component="caption"
+              >
+                admin@gmail.com
+              </Typography>
+            </Box>
           </Box>
         </MenuItem>
         <MenuItem onClick={handleClose}>

@@ -14,17 +14,7 @@ import {
 import { LineChart, axisClasses } from "@mui/x-charts";
 import theme from "@/app/theme";
 
-// const theme = createTheme({
-//   breakpoints: {
-//     values: {
-//       xs: 0,
-//       sm: 425,
-//       md: 600,
-//       lg: 1100,
-//       xl: 1440,
-//     },
-//   },
-// });
+
 const chartSetting = {
   yAxis: [
     {
@@ -74,32 +64,15 @@ export default function AreaCharts() {
   // const boxHeight = isSmallScreen ? 400 : 460;
   // const value = isSmallScreen ? 10 : 1;
 
-  const width = isSmallScreen? 250 : isMediumScreen ? 360 : isLgScreen ? 560: 599;
-  const height = isMediumScreen ? (isSmallScreen ? 280 : 330) : 400;
+  const width = isSmallScreen? 250 : isMediumScreen ? 360 : isLgScreen ? 630: 529;
+  const height = isMediumScreen ? (isSmallScreen ? 280 : 310) : 400;
   const boxHeight = isMediumScreen ? (isSmallScreen ? 399 : 460) : 460;
   const fontS = isMediumScreen ? 10 : 15;
 
   return (
-    <ThemeProvider theme={theme}>
+   
       <Box sx={{ position: "relative" }}>
-        {/* <Box
-          sx={{
-            position: "absolute",
-            left: "-15px",
-            top: "50%",
-            display: { xs: "none", md: "block" },
-          }}
-        >
-          <Typography
-            sx={{
-              transform: "rotate(-90deg)",
-              display: "block",
-              textAlign: "center",
-            }}
-          >
-            Ticket Count
-          </Typography>
-        </Box> */}
+       
         <Card>
           <Stack
             sx={{ height:  boxHeight }}
@@ -108,12 +81,12 @@ export default function AreaCharts() {
           >
             <CardContent>
               <Typography variant="h6">Utility Wise Long Pending Opened Tickets</Typography>
-              <Stack sx={{ mt: 3, pl: {md:2} }} direction="row" alignItems="center">
+              <Stack sx={{ mt: 3}} direction="row" alignItems="center">
                 <LineChart
                  
                   margin={{
                     top: 70,
-                    left: isMediumScreen?30: 75,
+                    left: isMediumScreen?30: 65,
                     right: 35,
                     bottom:60
                   }}
@@ -203,6 +176,6 @@ export default function AreaCharts() {
           </Stack>
         </Card>
       </Box>
-    </ThemeProvider>
+  
   );
 }
