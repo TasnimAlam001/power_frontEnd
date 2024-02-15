@@ -13,15 +13,14 @@ import {
 
 import { LineChart, axisClasses } from "@mui/x-charts";
 import theme from "@/app/theme";
-
+import webTheme from "@/app/theme";
 
 const chartSetting = {
   yAxis: [
     {
-      label: 'Ticket Count',
+      label: "Ticket Count",
     },
   ],
-
 };
 const data = [
   {
@@ -50,7 +49,6 @@ const data = [
   },
 ];
 
-
 const openedData = data.map((item) => item.uv);
 const xLabels = data.map((item) => item.name);
 
@@ -64,31 +62,37 @@ export default function AreaCharts() {
   // const boxHeight = isSmallScreen ? 400 : 460;
   // const value = isSmallScreen ? 10 : 1;
 
-  const width = isSmallScreen? 250 : isMediumScreen ? 360 : isLgScreen ? 630: 529;
+  const width = isSmallScreen
+    ? 250
+    : isMediumScreen
+    ? 360
+    : isLgScreen
+    ? 630
+    : 529;
   const height = isMediumScreen ? (isSmallScreen ? 280 : 310) : 400;
   const boxHeight = isMediumScreen ? (isSmallScreen ? 399 : 460) : 460;
   const fontS = isMediumScreen ? 10 : 15;
 
   return (
-   
+    <ThemeProvider theme={webTheme}>
       <Box sx={{ position: "relative" }}>
-       
         <Card>
           <Stack
-            sx={{ height:  boxHeight }}
+            sx={{ height: boxHeight }}
             direction="column"
             justifyContent="space-between"
           >
             <CardContent>
-              <Typography variant="h6">Utility Wise Long Pending Opened Tickets</Typography>
-              <Stack sx={{ mt: 3}} direction="row" alignItems="center">
+              <Typography variant="h6">
+                Utility Wise Long Pending Opened Tickets
+              </Typography>
+              <Stack sx={{ mt: 3 }} direction="row" alignItems="center">
                 <LineChart
-                 
                   margin={{
                     top: 70,
-                    left: isMediumScreen?30: 65,
+                    left: isMediumScreen ? 30 : 65,
                     right: 35,
-                    bottom:60
+                    bottom: 60,
                   }}
                   width={width}
                   height={height}
@@ -106,21 +110,21 @@ export default function AreaCharts() {
                     },
                   ]}
                   slotProps={{
-                    legend:{
+                    legend: {
                       itemMarkWidth: 10,
                       itemMarkHeight: 10,
                       labelStyle: {
                         fontSize: 15,
                       },
-                    }
+                    },
                   }}
                   xAxis={[
                     {
                       scaleType: "point",
                       data: xLabels,
                       tickLabelStyle: {
-                        angle: isMediumScreen? 70: 0,
-                        textAnchor: isMediumScreen? 'start': 'middle',
+                        angle: isMediumScreen ? 70 : 0,
+                        textAnchor: isMediumScreen ? "start" : "middle",
                         fontSize: fontS,
                       },
                     },
@@ -148,9 +152,8 @@ export default function AreaCharts() {
                       display: "none",
                     },
                     [`.${axisClasses.left} .${axisClasses.label}`]: {
-                      transform: 'translate(-20px, 0)',
+                      transform: "translate(-20px, 0)",
                     },
-
                   }}
                   {...chartSetting}
                 >
@@ -176,6 +179,6 @@ export default function AreaCharts() {
           </Stack>
         </Card>
       </Box>
-  
+    </ThemeProvider>
   );
 }

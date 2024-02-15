@@ -2,13 +2,13 @@ import { Box, Stack, ThemeProvider, Typography } from "@mui/material";
 import Date from "./components/date/page";
 
 import AllCharts from "./components/allCharts/page";
-import theme from "./theme";
 import Utilities from "./utilities/page";
+import webTheme from "./theme";
 
 export default function Home() {
   return (
     <main>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={webTheme}>
         
         <Box>
           <Stack
