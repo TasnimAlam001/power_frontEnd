@@ -2,14 +2,7 @@
 import { createTheme } from "@mui/material";
 
 
-// const storedMode = localStorage.getItem("palette.mode") || "light";
-// const mode = storedMode === "dark" ? "dark" : "light";
-
-
-
-
 const webTheme = createTheme({
-
 
   breakpoints: {
     values: {

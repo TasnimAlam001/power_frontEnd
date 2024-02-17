@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   AppBar,
   Badge,
@@ -52,7 +52,6 @@ import Link from "next/link";
 import { Mode } from "@mui/icons-material";
 import DayNightToggle from "../dayNightToggle/page";
 // import webTheme from "@/app/theme";
-
 
 const data = [
   { id: 1, icon: <FaUser />, label: "Executive", route: "executive" },
@@ -118,13 +117,26 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 const drawerWidth = 200;
 
-
-
 export default function NavBarDrawer({ children }) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const preMode = localStorage.getItem("mode");
+  const initialMode = preMode ? preMode : "light";
 
+  const [dark, setDark] = useState(initialMode === 'dark');
+  const darkTheme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: dark ? "dark" : "light",
+        },
+      }),
+    [dark]
+  );
+  useEffect(() => {
+    localStorage.setItem('mode', dark ? 'dark' : 'light');
+  }, [dark]);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -187,158 +199,159 @@ export default function NavBarDrawer({ children }) {
   }));
 
   return (
-    <div>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        {/* --------------------------------------------------nav------------------------------ */}
-        <AppBar
-          color="inherit"
-          variant="none"
-          position="fixed"
-          sx={{
-            width: { md: `calc(100% - ${drawerWidth}px)` },
-            ml: { md: `${drawerWidth}px` },
-          }}
-        >
-          <Toolbar>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              sx={{ width: "100%" }}
-            >
-              <Stack direction="row" alignItems="center">
-                <FormatAlignLeftIcon
-                  // color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  sx={{ mr: 2, display: { md: "none" } }}
-                />
-
-                <TextField
-                  sx={{ ml: 4, display: { xs: "none", md: "block" } }}
-                  placeholder="Search.."
-                  size="small"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        {" "}
-                        <FaSearch />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Stack>
-
+    <ThemeProvider theme={darkTheme}>
+      <div>
+        <Box sx={{ display: "flex" }}>
+          <CssBaseline />
+          {/* --------------------------------------------------nav------------------------------ */}
+          <AppBar
+            color="inherit"
+            variant="none"
+            position="fixed"
+            sx={{
+              width: { md: `calc(100% - ${drawerWidth}px)` },
+              ml: { md: `${drawerWidth}px` },
+            }}
+          >
+            <Toolbar>
               <Stack
                 direction="row"
-                alignItems="center"
-                justifyContent="center"
-                spacing={1}
+                justifyContent="space-between"
+                sx={{ width: "100%" }}
               >
-                <Typography
-                  lineHeight={0}
-                  gutterBottom={false}
-                  // color="black"
-                  sx={{
-                    cursor: "pointer",
+                <Stack direction="row" alignItems="center">
+                  <FormatAlignLeftIcon
+                    // color="inherit"
+                    aria-label="open drawer"
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    sx={{ mr: 2, display: { md: "none" } }}
+                  />
 
-                    padding: "7px",
-                    transition: "background-color ",
-                    "&:hover": {
-                      backgroundColor: "#e1e1e3",
-                      borderRadius: "100%",
-                    },
-                  }}
+                  <TextField
+                    sx={{ ml: 4, display: { xs: "none", md: "block" } }}
+                    placeholder="Search.."
+                    size="small"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          {" "}
+                          <FaSearch />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Stack>
+
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  spacing={1}
                 >
-                  <SettingsOverscanIcon />
-                </Typography>
-                <Typography
-                  lineHeight={0}
-                  gutterBottom={false}
-                  // color="black"
-                  sx={{
-                    cursor: "pointer",
+                  <Typography
+                    lineHeight={0}
+                    gutterBottom={false}
+                    // color="black"
+                    sx={{
+                      cursor: "pointer",
 
-                    // padding: "7px",
-                    // transition: "background-color ",
-                    // "&:hover": {
-                    //   backgroundColor: "#e1e1e3",
-                    //   borderRadius: "100%",
-                    // },
-                  }}
-                >
-                  <DayNightToggle />
-                
-                </Typography>
+                      padding: "7px",
+                      transition: "background-color ",
+                      "&:hover": {
+                        backgroundColor: "#e1e1e3",
+                        borderRadius: "100%",
+                      },
+                    }}
+                  >
+                    <SettingsOverscanIcon />
+                  </Typography>
+                  <Typography
+                    lineHeight={0}
+                    gutterBottom={false}
+                    // color="black"
+                    sx={{
+                      
+                      cursor: "pointer",
 
-                <Profile></Profile>
+                      // padding: "7px",
+                      // transition: "background-color ",
+                      // "&:hover": {
+                      //   backgroundColor: "#e1e1e3",
+                      //   borderRadius: "100%",
+                      // },
+                    }}
+                  >
+                    {/* <DayNightToggle /> */}
+                    <MaterialUISwitch onClick={()=>setDark(!dark)}/>
+                  </Typography>
+
+                  <Profile></Profile>
+                </Stack>
               </Stack>
-            </Stack>
-          </Toolbar>
-          <Divider />
-        </AppBar>
-        {/* ------------------------------------------side drawer------------------------------- */}
+            </Toolbar>
+            <Divider />
+          </AppBar>
+          {/* ------------------------------------------side drawer------------------------------- */}
 
-        <Box
-          component="nav"
-          sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
-          aria-label="mailbox folders"
-        >
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Drawer
-            variant="temporary"
-            open={mobileOpen}
-            onTransitionEnd={handleDrawerTransitionEnd}
-            onClose={handleDrawerClose}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              display: { xs: "block", md: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
+          <Box
+            component="nav"
+            sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
+            aria-label="mailbox folders"
           >
-            <DrawerHeader>
-              <IconButton onClick={handleDrawerClose}>
-                {theme.direction === "ltr" ? (
-                  <ChevronLeftIcon />
-                ) : (
-                  <ChevronRightIcon />
-                )}
-              </IconButton>
-            </DrawerHeader>
-            {drawer}
-          </Drawer>
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: "none", md: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Box>
-
-        
-            <Box
-              px={{ xs: 2, md: 4 }}
-              component="main"
-              sx={{ flexGrow: 1, pt: 3 }}
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            <Drawer
+              variant="temporary"
+              open={mobileOpen}
+              onTransitionEnd={handleDrawerTransitionEnd}
+              onClose={handleDrawerClose}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+              sx={{
+                display: { xs: "block", md: "none" },
+                "& .MuiDrawer-paper": {
+                  boxSizing: "border-box",
+                  width: drawerWidth,
+                },
+              }}
             >
-              <Toolbar />
-              {children}
-            </Box>
-       
-      </Box>
-    </div>
+              <DrawerHeader>
+                <IconButton onClick={handleDrawerClose}>
+                  {theme.direction === "ltr" ? (
+                    <ChevronLeftIcon />
+                  ) : (
+                    <ChevronRightIcon />
+                  )}
+                </IconButton>
+              </DrawerHeader>
+              {drawer}
+            </Drawer>
+            <Drawer
+              variant="permanent"
+              sx={{
+                display: { xs: "none", md: "block" },
+                "& .MuiDrawer-paper": {
+                  boxSizing: "border-box",
+                  width: drawerWidth,
+                },
+              }}
+              open
+            >
+              {drawer}
+            </Drawer>
+          </Box>
+
+          <Box
+            px={{ xs: 2, md: 4 }}
+            component="main"
+            sx={{ flexGrow: 1, pt: 3 }}
+          >
+            <Toolbar />
+            {children}
+          </Box>
+        </Box>
+      </div>
+    </ThemeProvider>
   );
 }
