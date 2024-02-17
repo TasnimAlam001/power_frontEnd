@@ -3,7 +3,7 @@ import { deepOrange, green, orange } from '@mui/material/colors'
 import React from 'react'
 
 export default function TableStatusColumn({ params }) {
-    console.log("status page", params.formattedValue)
+    // console.log("status page", params.formattedValue)
     const status = params.formattedValue;
 
     let backgroundColor;
