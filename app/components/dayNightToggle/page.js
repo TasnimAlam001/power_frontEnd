@@ -72,7 +72,7 @@ export default function DayNightToggle() {
     setMode(newMode);
     localStorage.setItem("palette.mode", newMode);
     theme.palette.mode = newMode;
-    console.log("toada",theme.palette.mode);
+    // console.log("toada",theme.palette.mode);
 
 
     // setTimeout(()=>{

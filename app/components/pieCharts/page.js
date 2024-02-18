@@ -33,7 +33,7 @@ const getArcLabel = (params) => {
 
 export default function PieChars() {
   const theme = useTheme()
-  console.log("fffffffffffffff",theme.palette.mode)
+  // console.log("fffffffffffffff",theme.palette.mode)
   // const [value, setValue] = React.useState(0);
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));

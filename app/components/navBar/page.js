@@ -52,6 +52,7 @@ import Link from "next/link";
 import { Mode } from "@mui/icons-material";
 import DayNightToggle from "../dayNightToggle/page";
 // import webTheme from "@/app/theme";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const data = [
   { id: 1, icon: <FaUser />, label: "Executive", route: "executive" },
@@ -65,7 +66,7 @@ const data = [
   { id: 4, icon: <TbBulbFilled />, label: "S & D List", route: "executive" },
   { id: 5, icon: <FaUsers />, label: "Users", route: "executive" },
   { id: 6, icon: <GiWallet />, label: "All Tickets", route: "allTickets" },
-  { id: 7, icon: <FaSignOutAlt />, label: "Logout", route: "executive" },
+  { id: 7, icon: <FaSignOutAlt />, label: "Login", route: "login" },
 ];
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -121,10 +122,11 @@ export default function NavBarDrawer({ children }) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  const preMode = localStorage.getItem("mode");
-  const initialMode = preMode ? preMode : "light";
+  // const preMode = localStorage.getItem("mode");
+  // const initialMode = preMode ? preMode : "light";
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)');
 
-  const [dark, setDark] = useState(initialMode === 'dark');
+  const [dark, setDark] = useState(prefersDarkMode);
   const darkTheme = useMemo(
     () =>
       createTheme({

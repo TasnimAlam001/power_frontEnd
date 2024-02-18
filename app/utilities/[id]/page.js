@@ -62,7 +62,7 @@ export default async function UtilityPage({ params }) {
             <ColumnCharts></ColumnCharts>
           </Grid>
           <Grid item xs={12} lg={5}>
-            <Stack justifyContent="space-between" sx={{display: "flex", flexDirection: {xs: "column", md: "row", xl: "column"}}} spacing={{xs:3, md:0, xl:3 } }>
+            <Stack justifyContent="space-between" sx={{display: "flex", flexDirection: {xs: "column", md: "row", lg: "column"}}} spacing={{xs:3, md:0, lg:3 } }>
               <Grid item>
 
                   <UtilityPie></UtilityPie>
