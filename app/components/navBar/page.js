@@ -22,7 +22,6 @@ import {
   Typography,
 } from "@mui/material";
 import SettingsOverscanIcon from "@mui/icons-material/SettingsOverscan";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import {
@@ -49,10 +48,8 @@ import logo from "@/public/logo2.png";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
 import Profile from "../profile/page";
 import Link from "next/link";
-import { Mode } from "@mui/icons-material";
-import DayNightToggle from "../dayNightToggle/page";
-// import webTheme from "@/app/theme";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 
 const data = [
   { id: 1, icon: <FaUser />, label: "Executive", route: "executive" },
@@ -122,8 +119,6 @@ export default function NavBarDrawer({ children }) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  // const preMode = localStorage.getItem("mode");
-  // const initialMode = preMode ? preMode : "light";
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)');
 
   const [dark, setDark] = useState(prefersDarkMode);
@@ -223,7 +218,7 @@ export default function NavBarDrawer({ children }) {
               >
                 <Stack direction="row" alignItems="center">
                   <FormatAlignLeftIcon
-                    // color="inherit"
+                  
                     aria-label="open drawer"
                     edge="start"
                     onClick={handleDrawerToggle}
@@ -254,7 +249,7 @@ export default function NavBarDrawer({ children }) {
                   <Typography
                     lineHeight={0}
                     gutterBottom={false}
-                    // color="black"
+                  
                     sx={{
                       cursor: "pointer",
 
@@ -271,21 +266,16 @@ export default function NavBarDrawer({ children }) {
                   <Typography
                     lineHeight={0}
                     gutterBottom={false}
-                    // color="black"
+                    
                     sx={{
-                      
                       cursor: "pointer",
 
-                      // padding: "7px",
-                      // transition: "background-color ",
-                      // "&:hover": {
-                      //   backgroundColor: "#e1e1e3",
-                      //   borderRadius: "100%",
-                      // },
+                     
                     }}
                   >
-                    {/* <DayNightToggle /> */}
+                   
                     <MaterialUISwitch onClick={()=>setDark(!dark)}/>
+                  
                   </Typography>
 
                   <Profile></Profile>
@@ -301,14 +291,14 @@ export default function NavBarDrawer({ children }) {
             sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
             aria-label="mailbox folders"
           >
-            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+
             <Drawer
               variant="temporary"
               open={mobileOpen}
               onTransitionEnd={handleDrawerTransitionEnd}
               onClose={handleDrawerClose}
               ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
+                keepMounted: true,
               }}
               sx={{
                 display: { xs: "block", md: "none" },

@@ -16,6 +16,7 @@ import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 import theme from "@/app/theme";
 import webTheme from "@/app/theme";
 import { useTheme } from "@emotion/react";
+import { Suspense } from "react";
 
 const data = [
   { label: "Opened", value: 273, color: "#04984A" },
@@ -32,7 +33,7 @@ const getArcLabel = (params) => {
 };
 
 export default function PieChars() {
-  const theme = useTheme()
+  const theme = useTheme();
   // console.log("fffffffffffffff",theme.palette.mode)
   // const [value, setValue] = React.useState(0);
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -49,7 +50,6 @@ export default function PieChars() {
   //     }),
   //   [mode]
   // );
-
 
   // const width = isMediumScreen ? (isSmallScreen ? 260 : 360) : 410;
   const width = isSmallScreen
@@ -113,6 +113,7 @@ export default function PieChars() {
                 },
               }}
             />
+
             <Divider sx={{ pt: 4 }} />
             <Grid container columnSpacing={1} sx={{ mt: 4, pl: 3 }}>
               {data.map((name, index) => (
@@ -137,6 +138,7 @@ export default function PieChars() {
               ))}
             </Grid>
           </CardContent>
+
           <Typography
             bgcolor="#ecedeb"
             pt={0.5}

@@ -608,28 +608,38 @@ const columns = [
   {
     field: "id",
     headerName: "Ticket ID",
-    width: 90,
+    // width: 90,
     renderCell: (params) =><TicketId {...{params}}/>,
     type:'actions'
   },
   {
     field: "status",
     headerName: "Status",
-    width: 100,
+    // width: 100,
     renderCell: (params) => <TableStatusColumn {...{ params }} />,
   },
-  { field: "company", headerName: "Company", width: 80 },
-  { field: "customer_name", headerName: "Customer Name", width: 150 },
-  { field: "area", headerName: "Area", width: 120 },
-  { field: "office", headerName: "Office", width: 120 },
-  { field: "ticket_category", headerName: "Ticket Category", width: 140 },
+  { field: "company", headerName: "Company",
+  //  width: 80 
+  },
+  { field: "customer_name", headerName: "Customer Name", 
+  // width: 150
+ },
+  { field: "area", headerName: "Area",
+  //  width: 120
+   },
+  { field: "office", headerName: "Office", 
+  // width: 120
+ },
+  { field: "ticket_category", headerName: "Ticket Category",
+  //  width: 140
+   },
   {
     field: "ticket_create_time",
     headerName: "Ticket Create Time",
     editable: true,
     align: "left",
     headerAlign: "left",
-    width: 170,
+    // width: 170,
     // type: "dateTime"
   },
   // {
@@ -645,7 +655,7 @@ const columns = [
 
 export default function DataTable() {
   return (
-    <div style={{ height: 600, width: "100%" }}>
+    <div style={{ height: 600, width: "100%" , overflow: "auto", overflowX:"auto"}}>
       <DataGrid
         rows={rows}
         columns={columns}

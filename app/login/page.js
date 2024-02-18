@@ -47,13 +47,13 @@ export default function Login() {
         <Paper
           elevation={3}
           sx={{
-            width: "25%",
+            width: "30%",
             p: 3,
             mt:0.5,
             backgroundColor: "rgba(255, 255, 255, 0.8)",
           }}
         >
-          <Stack direction="column" spacing={3}>
+          <Stack direction="column" spacing={3}> 
             <Box sx={{ alignSelf: "center" }}>
               <Image width={120} src={logo} alt="ministry of power logo" />
               <Typography variant="h6">Power Division</Typography>
