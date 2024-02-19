@@ -25,6 +25,7 @@ import Input from "@mui/material/Input";
 // import loginImg from "public/loin.svg"
 import { green, grey } from "@mui/material/colors";
 import { useTheme } from "@emotion/react";
+import RootLayout from "../layout";
 
 // import InputLabel from '@mui/material/InputLabel';
 const url = "http://172.17.0.87:16999/api";
@@ -142,13 +143,13 @@ export default function Login() {
               />
             </FormControl>
             {/* <FormControlLabel
-              value="end"
-              control={<Checkbox size="small" />}
-              label="Remember me"
-              labelPlacement="end"
-            /> */}
+          value="end"
+          control={<Checkbox size="small" />}
+          label="Remember me"
+          labelPlacement="end"
+        /> */}
             <Stack
-              direction={isMediumScreen ? "column" : "row"}
+              direction="row"
               alignItems="center"
               justifyContent="space-between"
             >
@@ -191,7 +192,7 @@ export default function Login() {
           <Image
             src="/login.svg"
             alt="log in img"
-            width={650}
+            width={750}
             height={650}
             property
           ></Image>
