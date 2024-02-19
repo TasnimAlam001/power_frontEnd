@@ -1,67 +1,121 @@
 "use client";
-
-import React from "react";
-import img from "@/public/loginImg.jpg";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
   Button,
   Checkbox,
   FormControl,
   FormControlLabel,
+  Grid,
   IconButton,
-  Input,
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  Paper,
   Stack,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import Image from "next/image";
+import React, { useState } from "react";
+import axios from "axios";
 import logo from "@/public/logo2.png";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import Swal from "sweetalert2";
+import Input from "@mui/material/Input";
+// import loginImg from "public/loin.svg"
 import { green, grey } from "@mui/material/colors";
+import { useTheme } from "@emotion/react";
+
+// import InputLabel from '@mui/material/InputLabel';
+const url = "http://172.17.0.87:16999/api";
 
 export default function Login() {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const theme = useTheme();
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const handleClickShowPassword = () => {
+    setShowPassword((show) => !show);
+  };
+
+  const handleSignIn = async () => {
+    console.log("Email:", email);
+    console.log("Password:", password);
+
+    try {
+      const res = await axios.post(url + "/web-app/login", { email, password });
+
+      if (res.data.message === "Login Successful") {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        alert("hoi nai, abr koro");
+      }
+
+      console.log(res);
+    } catch (error) {
+      console.log("error hoise: ", error.response);
+      if (error.response.data.message === "Incorrect Credentials") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please check your email and password again!",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.response.data.message}`,
+        });
+      }
+    }
+  };
   return (
-    <Stack direction="row" spacing={4}>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "center",
-          width: "100%",
-          height: "100vh",
-          backgroundImage: `url(${img.src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <Paper
-          elevation={3}
-          sx={{
-            width: "30%",
-            p: 3,
-            mt:0.5,
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-          }}
-        >
-          <Stack direction="column" spacing={3}> 
-            <Box sx={{ alignSelf: "center" }}>
-              <Image width={120} src={logo} alt="ministry of power logo" />
-              <Typography variant="h6">Power Division</Typography>
+    <Box>
+      <Grid container>
+        <Grid item xs={12} md={4}>
+          <Stack sx={{ px: 4 }} direction="column" spacing={3}>
+            <Stack
+              direction="column"
+              alignItems="center"
+              sx={{ alignSelf: "center" }}
+            >
+              <Image
+                width={60}
+                src={logo}
+                spacing={2}
+                alt="ministry of power logo"
+              />
+              <Typography sx={{ mt: 1 }} variant="body1">
+                বিদ্যুৎ জ্বালানি ও খনিজ সম্পদ মন্ত্রণালয়
+              </Typography>
+            </Stack>
+            <Box>
+              <Typography fontWeight={300} variant="subtitle2">
+                Welcome back!
+              </Typography>
+              <Typography fontWeight={700} variant="h6" sx={{ mb: 4 }}>
+                Login to your account.
+              </Typography>
             </Box>
-            <FormControl>
-              {/* <InputLabel variant="outlined">Email Address</InputLabel>
-              <Input placeholder="Enter Your Email" size="small" /> */}
-              <TextField label="Email Address" />
+            <FormControl variant="outlined">
+              <InputLabel htmlFor="component-simple">Email</InputLabel>
+              <OutlinedInput
+                id="component-outlined"
+                placeholder="Inter your Email"
+                label="Name"
+              />
             </FormControl>
             <FormControl variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">
@@ -70,6 +124,8 @@ export default function Login() {
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -85,17 +141,62 @@ export default function Login() {
                 label="Password"
               />
             </FormControl>
-            <FormControlLabel
-              
+            {/* <FormControlLabel
               value="end"
-              control={<Checkbox  size="small"/>}
-              label="Remember This Device"
+              control={<Checkbox size="small" />}
+              label="Remember me"
               labelPlacement="end"
-            />
-            <Button  variant="contained" sx={{backgroundColor: grey[700] }}>Sign In</Button>
+            /> */}
+            <Stack
+              direction={isMediumScreen ? "column" : "row"}
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Typography variant="subtitle2">
+                <Checkbox size="small" /> Remember me
+              </Typography>
+              <Typography
+                fontWeight={550}
+                variant="subtitle2"
+                sx={{ color: green[900] }}
+              >
+                Forget Password?
+              </Typography>
+            </Stack>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: green[900],
+                "&:hover": {
+                  backgroundColor: green[800],
+                },
+              }}
+              onClick={handleSignIn}
+            >
+              Sign In
+            </Button>
+            <Typography variant="caption" sx={{ textAlign: "center" }}>
+              Don`t have an account?{" "}
+              <span style={{ color: green[900], fontWeight: 600 }}>
+                Sign up
+              </span>
+            </Typography>
           </Stack>
-        </Paper>
-      </Box>
-    </Stack>
+          <Typography sx={{ fontSize: 12, mt: 8 }}>
+            © 2023, All Rights Reserved. Developed By{" "}
+            <span style={{ color: "#00ACF3" }}>Digicon Technologies ltd.</span>
+          </Typography>
+        </Grid>
+        <Grid sx={{ display: { xs: "none", md: "block" } }} item xs={8}>
+          <Image
+            src="/login.svg"
+            alt="log in img"
+            width={650}
+            height={650}
+            property
+          ></Image>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
