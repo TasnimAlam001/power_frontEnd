@@ -25,7 +25,7 @@ import Input from "@mui/material/Input";
 // import loginImg from "public/loin.svg"
 import { green, grey } from "@mui/material/colors";
 import { useTheme } from "@emotion/react";
-import RootLayout from "../layout";
+import { useRouter } from "next/navigation";
 
 // import InputLabel from '@mui/material/InputLabel';
 const url = "http://172.17.0.87:16999/api";
@@ -36,6 +36,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
+  const router = useRouter();
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -51,8 +52,13 @@ export default function Login() {
 
     try {
       const res = await axios.post(url + "/web-app/login", { email, password });
+      console.log("response",res)
+
 
       if (res.data.message === "Login Successful") {
+        const token = res.data.data.token;
+        // console.log("token",token)
+        localStorage.setItem('access-token', token)
         Swal.fire({
           position: "center",
           icon: "success",
@@ -60,11 +66,10 @@ export default function Login() {
           showConfirmButton: false,
           timer: 1500,
         });
-      } else {
-        alert("hoi nai, abr koro");
+        // router.push("/", { scroll: true });
       }
 
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       console.log("error hoise: ", error.response);
       if (error.response.data.message === "Incorrect Credentials") {
@@ -86,7 +91,7 @@ export default function Login() {
     <Box>
       <Grid container>
         <Grid item xs={12} md={4}>
-          <Stack sx={{ px: 4 }} direction="column" spacing={3}>
+          <Stack sx={{ px: 2 }} direction="column" spacing={3}>
             <Stack
               direction="column"
               alignItems="center"
@@ -114,8 +119,10 @@ export default function Login() {
               <InputLabel htmlFor="component-simple">Email</InputLabel>
               <OutlinedInput
                 id="component-outlined"
-                placeholder="Inter your Email"
-                label="Name"
+                // placeholder="Inter your Email"
+                label="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <FormControl variant="outlined">
@@ -194,7 +201,7 @@ export default function Login() {
             alt="log in img"
             width={750}
             height={650}
-            property
+        
           ></Image>
         </Grid>
       </Grid>

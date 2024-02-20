@@ -49,6 +49,8 @@ import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
 import Profile from "../profile/page";
 import Link from "next/link";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import CurrentRoute from "../currentRoute/page";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const data = [
   { id: 1, icon: <FaUser />, label: "Executive", route: "executive" },
@@ -118,7 +120,22 @@ export default function NavBarDrawer({ children }) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  // const [cUrl, setCUrl] = React.useState();
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: light)");
+  
+
+//  console.log("current rasta",cUrl)
+      
+      
+//   const pathname = usePathname()
+//   console.log(pathname)
+//   useEffect(() => {
+//     const url= pathname;
+//     setCUrl(url)
+//     // ...
+//   }, [pathname])
+
+
 
   const [dark, setDark] = useState(prefersDarkMode);
   const darkTheme = useMemo(
@@ -193,11 +210,13 @@ export default function NavBarDrawer({ children }) {
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
   }));
+  // <CurrentRoute/>
 
   return (
     <div>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
+
         {/* --------------------------------------------------nav------------------------------ */}
         <AppBar
           color="inherit"

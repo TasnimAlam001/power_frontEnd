@@ -615,7 +615,7 @@ const columns = [
   {
     field: "status",
     headerName: "Status",
-    // width: 100,
+    minWidth: 130,
     renderCell: (params) => <TableStatusColumn {...{ params }} />,
   },
   { field: "company", headerName: "Company",
@@ -655,7 +655,7 @@ const columns = [
 
 export default function DataTable() {
   return (
-    <div style={{ height: 600, width: "100%" , overflow: "auto", overflowX:"auto"}}>
+    <div style={{ height: 600, width: "100%" , overflow: "auto",}}>
       <DataGrid
         rows={rows}
         columns={columns}
