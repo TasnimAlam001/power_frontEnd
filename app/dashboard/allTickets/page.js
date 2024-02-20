@@ -399,8 +399,6 @@ import TicketId from "./ticketId/page";
 //   },
 // ];
 
-
-
 const rows = [
   {
     id: 124345,
@@ -601,7 +599,7 @@ const rows = [
     office: "Panasonic Office",
     ticket_category: "Customer Service",
     ticket_create_time: "2024-01-29T15:55:00",
-  }
+  },
 ];
 
 const columns = [
@@ -609,37 +607,39 @@ const columns = [
     field: "id",
     headerName: "Ticket ID",
     // width: 90,
-    renderCell: (params) =><TicketId {...{params}}/>,
-    type:'actions'
+    renderCell: (params) => <TicketId {...{ params }} />,
+    type: "actions",
   },
   {
     field: "status",
     headerName: "Status",
-    minWidth: 130,
+    minWidth: 120,
     renderCell: (params) => <TableStatusColumn {...{ params }} />,
   },
-  { field: "company", headerName: "Company",
-  //  width: 80 
+  { field: "company", headerName: "Company", minWidth: 130 },
+  { field: "customer_name", headerName: "Customer Name", minWidth: 175 },
+  {
+    field: "area",
+    headerName: "Area",
+    minWidth: 100 
   },
-  { field: "customer_name", headerName: "Customer Name", 
-  // width: 150
- },
-  { field: "area", headerName: "Area",
-  //  width: 120
-   },
-  { field: "office", headerName: "Office", 
-  // width: 120
- },
-  { field: "ticket_category", headerName: "Ticket Category",
-  //  width: 140
-   },
+  {
+    field: "office",
+    headerName: "Office",
+    minWidth: 150 
+  },
+  {
+    field: "ticket_category",
+    headerName: "Ticket Category",
+    minWidth: 170 
+  },
   {
     field: "ticket_create_time",
     headerName: "Ticket Create Time",
     editable: true,
     align: "left",
     headerAlign: "left",
-    // width: 170,
+    minWidth: 150 
     // type: "dateTime"
   },
   // {
@@ -655,7 +655,7 @@ const columns = [
 
 export default function DataTable() {
   return (
-    <div style={{ height: 600, width: "100%" , overflow: "auto",}}>
+    <div style={{ height: 600, width: "100%", overflow: "auto" }}>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -669,8 +669,6 @@ export default function DataTable() {
           toolbar: GridToolbar,
         }}
         checkboxSelection
-        
-       
       />
     </div>
   );
