@@ -26,6 +26,8 @@ import Input from "@mui/material/Input";
 import { green, grey } from "@mui/material/colors";
 import { useTheme } from "@emotion/react";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // import InputLabel from '@mui/material/InputLabel';
 const url = "http://172.17.0.87:16999/api";
@@ -52,21 +54,16 @@ export default function Login() {
 
     try {
       const res = await axios.post(url + "/web-app/login", { email, password });
-      console.log("response",res)
-
+      console.log("response", res);
 
       if (res.data.message === "Login Successful") {
         const token = res.data.data.token;
+
+        toast("Login Successful");
         // console.log("token",token)
         localStorage.setItem('access-token', token)
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Login Successful",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        // router.push("/", { scroll: true });
+        
+        router.push("/", { scroll: true });
       }
 
       // console.log(res);
@@ -96,6 +93,7 @@ export default function Login() {
               direction="column"
               alignItems="center"
               sx={{ alignSelf: "center" }}
+              
             >
               <Image
                 width={60}
@@ -103,15 +101,15 @@ export default function Login() {
                 spacing={2}
                 alt="ministry of power logo"
               />
-              <Typography sx={{ mt: 1 }} variant="body1">
+              <Typography color="black" sx={{ mt: 1 }} variant="body1">
                 বিদ্যুৎ জ্বালানি ও খনিজ সম্পদ মন্ত্রণালয়
               </Typography>
             </Stack>
             <Box>
-              <Typography fontWeight={300} variant="subtitle2">
+              <Typography color="black" fontWeight={300} variant="subtitle2">
                 Welcome back!
               </Typography>
-              <Typography fontWeight={700} variant="h6" sx={{ mb: 4 }}>
+              <Typography color="black" fontWeight={700} variant="h6" sx={{ mb: 4 }}>
                 Login to your account.
               </Typography>
             </Box>
@@ -160,7 +158,7 @@ export default function Login() {
               alignItems="center"
               justifyContent="space-between"
             >
-              <Typography variant="subtitle2">
+              <Typography color="black" variant="subtitle2">
                 <Checkbox size="small" /> Remember me
               </Typography>
               <Typography
@@ -183,14 +181,15 @@ export default function Login() {
             >
               Sign In
             </Button>
-            <Typography variant="caption" sx={{ textAlign: "center" }}>
+            <ToastContainer />
+            <Typography color="black" variant="caption" sx={{ textAlign: "center" }}>
               Don`t have an account?{" "}
               <span style={{ color: green[900], fontWeight: 600 }}>
                 Sign up
               </span>
             </Typography>
           </Stack>
-          <Typography sx={{ fontSize: 12, mt: 8 }}>
+          <Typography color="black" sx={{ fontSize: 12, mt: 8 }}>
             © 2023, All Rights Reserved. Developed By{" "}
             <span style={{ color: "#00ACF3" }}>Digicon Technologies ltd.</span>
           </Typography>

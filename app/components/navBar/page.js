@@ -148,7 +148,7 @@ export default function NavBarDrawer({ children }) {
     [dark]
   );
   useEffect(() => {
-    localStorage.setItem("mode", dark ? "dark" : "light");
+    // localStorage.setItem("mode", dark ? "dark" : "light");
   }, [dark]);
 
   const handleDrawerClose = () => {
