@@ -3,8 +3,9 @@ import { Grid, ThemeProvider, createTheme } from "@mui/material";
 import React from "react";
 import PieChars from "../pieCharts/page";
 import BarCharts from "../barCharts/page";
-import AreaCharts from '../areaCharts/page'
-import ColumnCharts from '../columnCharts/page'
+import AreaCharts from "../areaCharts/page";
+import ColumnCharts from "../columnCharts/page";
+
 const theme = createTheme({
   breakpoints: {
     values: {

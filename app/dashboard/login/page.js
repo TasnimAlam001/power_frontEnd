@@ -86,7 +86,7 @@ export default function Login() {
   };
   return (
     <Box>
-      <Grid container>
+      <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={12} md={4}>
           <Stack sx={{ px: 2 }} direction="column" spacing={3}>
             <Stack

@@ -7,7 +7,7 @@ export default function NotFound() {
     <Box>
         Requested page is not found. <br></br>
 
-        Go Back to <Link href="/" color='success.main' > Home</Link>
+        Go Back to <Link href="/dashboard" color='success.main' > Home</Link>
       
     </Box>
   )

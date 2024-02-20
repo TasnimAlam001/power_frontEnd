@@ -1,3 +1,4 @@
+
 import getAllUtilities from "@/lib/getAllUtilities";
 import { Box, Grid, Paper, ThemeProvider, Typography } from "@mui/material";
 import Link from "next/link";
@@ -21,7 +22,7 @@ export default async function Utilities() {
               borderRadius: "0.5rem",
             }}
           >
-            <Link href={`/utilities/${utility.id}`}>
+            <Link href={`/dashboard/utilities/${utility.id}`}>
               <Box px={2} pt={2} pb={1}>
                 <img
                   height={95}

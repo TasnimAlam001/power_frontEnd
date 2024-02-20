@@ -1,8 +1,8 @@
 // "use client";
-import ColumnCharts from "@/app/components/columnCharts/page";
-import UtilityBarChart from "@/app/components/utilityBarChart/page";
-import UtilityPie from "@/app/components/utilityPie/page";
-import UtilityPie2 from "@/app/components/utilityPie2/page";
+import ColumnCharts from "@/app/dashboard/components/columnCharts/page";
+import UtilityBarChart from "@/app/dashboard/components/utilityBarChart/page";
+import UtilityPie from "@/app/dashboard/components/utilityPie/page";
+import UtilityPie2 from "@/app/dashboard/components/utilityPie2/page";
 import theme from "@/app/theme";
 import getUtility from "@/lib/getUtility";
 import { Box, Grid, Stack, ThemeProvider, Typography } from "@mui/material";

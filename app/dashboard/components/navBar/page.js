@@ -46,11 +46,10 @@ import { GiWallet } from "react-icons/gi";
 import Image from "next/image";
 import logo from "@/public/logo2.png";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import Profile from "../profile/page";
 import Link from "next/link";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import CurrentRoute from "../currentRoute/page";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Profile from "../profile/page";
+
 
 const data = [
   { id: 1, icon: <FaUser />, label: "Executive", route: "executive" },
@@ -168,7 +167,7 @@ export default function NavBarDrawer({ children }) {
 
   const drawer = (
     <div>
-      <Link href="/">
+      <Link href="/dashboard">
         <Stack direction="row" height={70} pl={2} pt={4}>
           <Image
             src={logo}
@@ -185,7 +184,7 @@ export default function NavBarDrawer({ children }) {
 
       <List sx={{ pl: 2 }}>
         {data.map((item) => (
-          <Link key={item.label} href={`/${item.route}`}>
+          <Link key={item.label} href={`/dashboard/${item.route}`}>
             <ListItemButton sx={{ py: 0, minHeight: 38 }}>
               <ListItemIcon sx={{ color: "inherit" }}>{item.icon}</ListItemIcon>
               <ListItemText
