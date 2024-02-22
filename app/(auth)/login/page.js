@@ -28,6 +28,8 @@ import { useTheme } from "@emotion/react";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useForm } from "react-hook-form";
+
 
 // import InputLabel from '@mui/material/InputLabel';
 const url = "http://172.17.0.87:16999/api";
@@ -39,6 +41,18 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
+
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm()
+  const onSubmit = (data) => console.log(data)
+
+
+
+
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -85,8 +99,8 @@ export default function Login() {
     }
   };
   return (
-    <Box sx={{mt: 4}}>
-      <Grid container spacing={6} sx={{ml: {md: 10}}}>
+    <Box sx={{ mt: 4 }}>
+      <Grid container spacing={6} sx={{ ml: { md: 10 } }}>
         <Grid item xs={12} md={4}>
           <Stack sx={{ px: 2 }} direction="column" spacing={3}>
             <Stack
@@ -117,74 +131,76 @@ export default function Login() {
                 Login to your account.
               </Typography>
             </Box>
-            <FormControl variant="outlined">
-              <InputLabel htmlFor="component-simple">Email</InputLabel>
-              <OutlinedInput
-                id="component-outlined"
-                // placeholder="Inter your Email"
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password"
-              />
-            </FormControl>
-            {/* <FormControlLabel
+            <form>
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="component-simple">Email</InputLabel>
+                <OutlinedInput
+                  id="component-outlined"
+                  // placeholder="Inter your Email"
+                  label="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FormControl>
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                />
+              </FormControl>
+              {/* <FormControlLabel
               value="end"
               control={<Checkbox size="small" />}
               label="Remember me"
               labelPlacement="end"
             /> */}
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-            >
-              <Typography color="black" variant="subtitle2">
-                <Checkbox size="small" /> Remember me
-              </Typography>
-              <Typography
-                fontWeight={550}
-                variant="subtitle2"
-                sx={{ color: green[900] }}
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
               >
-                Forget Password?
-              </Typography>
-            </Stack>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: green[900],
-                "&:hover": {
-                  backgroundColor: green[800],
-                },
-              }}
-              onClick={handleSignIn}
-            >
-              Sign In
-            </Button>
+                <Typography color="black" variant="subtitle2">
+                  <Checkbox size="small" /> Remember me
+                </Typography>
+                <Typography
+                  fontWeight={550}
+                  variant="subtitle2"
+                  sx={{ color: green[900] }}
+                >
+                  Forget Password?
+                </Typography>
+              </Stack>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: green[900],
+                  "&:hover": {
+                    backgroundColor: green[800],
+                  },
+                }}
+                onClick={handleSignIn}
+              >
+                Sign In
+              </Button>
+            </form>
             <ToastContainer />
             <Typography
               color="black"
