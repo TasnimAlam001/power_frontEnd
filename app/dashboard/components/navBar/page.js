@@ -63,7 +63,7 @@ const data = [
   { id: 4, icon: <TbBulbFilled />, label: "S & D List", route: "executive" },
   { id: 5, icon: <FaUsers />, label: "Users", route: "executive" },
   { id: 6, icon: <GiWallet />, label: "All Tickets", route: "allTickets" },
-  { id: 7, icon: <FaSignOutAlt />, label: "Login", route: "login" },
+  // { id: 7, icon: <FaSignOutAlt />, label: "Login", route: "login" },
 ];
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -198,6 +198,19 @@ export default function NavBarDrawer({ children }) {
             </ListItemButton>
           </Link>
         ))}
+        <Link  href="/login">
+            <ListItemButton sx={{ py: 0, minHeight: 38 }}>
+              <ListItemIcon sx={{ color: "inherit" }}><FaSignOutAlt /></ListItemIcon>
+              <ListItemText
+                sx={{ ml: -2 }}
+                primary="Login"
+                primaryTypographyProps={{
+                  fontSize: 13,
+                  fontWeight: "medium",
+                }}
+              />
+            </ListItemButton>
+          </Link>
       </List>
     </div>
   );

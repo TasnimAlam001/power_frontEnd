@@ -1,10 +1,19 @@
+import Link from "next/link";
 import Dashboard from "./dashboard/page";
+import { green } from "@mui/material/colors";
 
 
 export default function Home() {
   return (
-    <main>
-        <Dashboard></Dashboard>
+    <main style={{
+      display: "flex",
+      marginTop: "90px",
+      justifyContent: "center",
+     
+    }}>
+        <div >
+          Nothing is here <span style={{color: green[400], fontWeight: "600"}}><Link href="/dashboard">Go to Dashboard</Link> </span>
+        </div>
     </main>
   );
 }

@@ -61,9 +61,9 @@ export default function Login() {
 
         toast("Login Successful");
         // console.log("token",token)
-        localStorage.setItem('access-token', token)
-        
-        router.push("/", { scroll: true });
+        localStorage.setItem("access-token", token);
+
+        router.push("/dashboard", { scroll: true });
       }
 
       // console.log(res);
@@ -85,15 +85,14 @@ export default function Login() {
     }
   };
   return (
-    <Box>
-      <Grid container alignItems="center" justifyContent="center">
+    <Box sx={{mt: 4}}>
+      <Grid container spacing={6} sx={{ml: {md: 10}}}>
         <Grid item xs={12} md={4}>
           <Stack sx={{ px: 2 }} direction="column" spacing={3}>
             <Stack
               direction="column"
               alignItems="center"
               sx={{ alignSelf: "center" }}
-              
             >
               <Image
                 width={60}
@@ -109,7 +108,12 @@ export default function Login() {
               <Typography color="black" fontWeight={300} variant="subtitle2">
                 Welcome back!
               </Typography>
-              <Typography color="black" fontWeight={700} variant="h6" sx={{ mb: 4 }}>
+              <Typography
+                color="black"
+                fontWeight={700}
+                variant="h6"
+                sx={{ mb: 4 }}
+              >
                 Login to your account.
               </Typography>
             </Box>
@@ -148,11 +152,11 @@ export default function Login() {
               />
             </FormControl>
             {/* <FormControlLabel
-          value="end"
-          control={<Checkbox size="small" />}
-          label="Remember me"
-          labelPlacement="end"
-        /> */}
+              value="end"
+              control={<Checkbox size="small" />}
+              label="Remember me"
+              labelPlacement="end"
+            /> */}
             <Stack
               direction="row"
               alignItems="center"
@@ -182,7 +186,11 @@ export default function Login() {
               Sign In
             </Button>
             <ToastContainer />
-            <Typography color="black" variant="caption" sx={{ textAlign: "center" }}>
+            <Typography
+              color="black"
+              variant="caption"
+              sx={{ textAlign: "center" }}
+            >
               Don`t have an account?{" "}
               <span style={{ color: green[900], fontWeight: 600 }}>
                 Sign up
@@ -200,7 +208,6 @@ export default function Login() {
             alt="log in img"
             width={750}
             height={650}
-        
           ></Image>
         </Grid>
       </Grid>
