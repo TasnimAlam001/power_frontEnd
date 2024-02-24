@@ -6,7 +6,7 @@
                 <FormControl variant="outlined">
                   <InputLabel htmlFor="component-simple">Email</InputLabel>
                   <OutlinedInput
-                  sx={{width:"100%"}}
+                  sx={{ width: {xs: 280, sm: 350} }}
                     id="component-outlined"
                     // placeholder="Inter your Email"
                     label="Email"

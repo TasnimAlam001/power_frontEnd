@@ -30,7 +30,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 
-
 // import InputLabel from '@mui/material/InputLabel';
 const url = "http://172.17.0.87:16999/api";
 
@@ -42,17 +41,12 @@ export default function Login() {
   const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
 
-
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm()
-  const onSubmit = (data) => console.log(data)
-
-
-
-
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -131,41 +125,61 @@ export default function Login() {
                 Login to your account.
               </Typography>
             </Box>
-            <form>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="component-simple">Email</InputLabel>
-                <OutlinedInput
-                  id="component-outlined"
-                  // placeholder="Inter your Email"
-                  label="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </FormControl>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Password"
-                />
-              </FormControl>
+            <form onSubmit={handleSubmit(onSubmit)}>
+            <Box sx={{ width: "100%" }}>
+                <FormControl variant="outlined">
+                  <InputLabel htmlFor="component-simple">Email</InputLabel>
+                  <OutlinedInput
+                  sx={{ width: {xs: 280, sm: 350} }}
+                    id="component-outlined"
+                    // placeholder="Inter your Email"
+                    label="Email"
+                    required="true"
+                    value={email}
+                    {...register("email", { required: true })}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </FormControl>
+{/* 
+                <br />
+                {errors.email && (
+                  <span style={{ color: red[500] }}>Email is required</span>
+                )} */}
+              </Box>
+              <Box sx={{ mt: 3, mb: 2 }}>
+                <FormControl variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    sx={{ width: {xs: 280, sm: 350} }}
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    {...register("password", { required: true })}
+                    required="true"
+                    onChange={(e) => setPassword(e.target.value)}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                  />
+                </FormControl>
+
+                {/* <br />
+                {errors.password && (
+                  <span style={{ color: red[500] }}>Password is required</span>
+                )} */}
+              </Box>
               {/* <FormControlLabel
               value="end"
               control={<Checkbox size="small" />}
@@ -173,6 +187,8 @@ export default function Login() {
               labelPlacement="end"
             /> */}
               <Stack
+                sx={{ width: {xs: 280, sm: 350} }}
+                // width={350}
                 direction="row"
                 alignItems="center"
                 justifyContent="space-between"
@@ -190,13 +206,15 @@ export default function Login() {
               </Stack>
               <Button
                 variant="contained"
+                type="submit"
                 sx={{
+                  width: {xs: 280, sm: 350},
                   backgroundColor: green[900],
                   "&:hover": {
                     backgroundColor: green[800],
                   },
                 }}
-                onClick={handleSignIn}
+                // onClick={handleSignIn}
               >
                 Sign In
               </Button>
@@ -213,7 +231,7 @@ export default function Login() {
               </span>
             </Typography>
           </Stack>
-          <Typography color="black" sx={{ fontSize: 12, mt: 8 }}>
+          <Typography color="black" sx={{ fontSize: 12, mt: 8, textAlign: "center" }}>
             © 2023, All Rights Reserved. Developed By{" "}
             <span style={{ color: "#00ACF3" }}>Digicon Technologies ltd.</span>
           </Typography>
