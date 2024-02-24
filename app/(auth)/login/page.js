@@ -21,14 +21,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import logo from "@/public/logo2.png";
 import Swal from "sweetalert2";
-import Input from "@mui/material/Input";
-// import loginImg from "public/loin.svg"
-import { green, grey } from "@mui/material/colors";
+import { green, grey, red } from "@mui/material/colors";
 import { useTheme } from "@emotion/react";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "@/app/dashboard/Hooks/useAxiousSecure";
 
 // import InputLabel from '@mui/material/InputLabel';
 const url = "http://172.17.0.87:16999/api";
@@ -40,13 +39,55 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
+  const [axiosSecure] = useAxiosSecure()
 
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+
+  const onSubmit = async(data) => {
+    console.log(data);
+    const email = data.email;
+    const password = data.password;
+
+    try {
+      const res = await axiosSecure.post('/web-app/login', {email,password});
+      console.log("response", res);
+
+      if (res.data.message === "Login Successful") {
+        const token = res.data.data.token;
+
+        toast("Login Successful");
+        // console.log("token",token)
+        localStorage.setItem("access-token", token);
+
+        router.push("/dashboard", { scroll: true });
+      }
+
+      // console.log(res);
+    } catch (error) {
+      console.log("error hoise: ", error.response);
+      if (error.response.status === 400) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please check your email and password again!",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.response.data.message}`,
+        });
+      }
+    }
+
+
+
+  };
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -134,17 +175,17 @@ export default function Login() {
                     id="component-outlined"
                     // placeholder="Inter your Email"
                     label="Email"
-                    required="true"
+                  
                     value={email}
                     {...register("email", { required: true })}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </FormControl>
-{/* 
+
                 <br />
                 {errors.email && (
                   <span style={{ color: red[500] }}>Email is required</span>
-                )} */}
+                )}
               </Box>
               <Box sx={{ mt: 3, mb: 2 }}>
                 <FormControl variant="outlined">
@@ -157,7 +198,7 @@ export default function Login() {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     {...register("password", { required: true })}
-                    required="true"
+                    
                     onChange={(e) => setPassword(e.target.value)}
                     endAdornment={
                       <InputAdornment position="end">
@@ -175,10 +216,10 @@ export default function Login() {
                   />
                 </FormControl>
 
-                {/* <br />
+                <br />
                 {errors.password && (
                   <span style={{ color: red[500] }}>Password is required</span>
-                )} */}
+                )}
               </Box>
               {/* <FormControlLabel
               value="end"

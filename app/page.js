@@ -12,7 +12,7 @@ export default function Home() {
      
     }}>
         <div >
-          Nothing is here <span style={{color: green[400], fontWeight: "600"}}><Link href="/dashboard">Go to Dashboard</Link> </span>
+          Nothing is here, please <span style={{color: green[400], fontWeight: "600"}}><Link href="/login">Login</Link>  </span>to assess Dashboard
         </div>
     </main>
   );

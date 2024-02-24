@@ -49,7 +49,7 @@ import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
 import Link from "next/link";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Profile from "../profile/page";
-
+import { useRouter } from "next/navigation";
 
 const data = [
   { id: 1, icon: <FaUser />, label: "Executive", route: "executive" },
@@ -116,25 +116,36 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 const drawerWidth = 200;
 
 export default function NavBarDrawer({ children }) {
+  const router = useRouter();
   const theme = useTheme();
+  const [isLogin, setIsLogin] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   // const [cUrl, setCUrl] = React.useState();
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: light)");
-  
 
-//  console.log("current rasta",cUrl)
-      
-      
-//   const pathname = usePathname()
-//   console.log(pathname)
-//   useEffect(() => {
-//     const url= pathname;
-//     setCUrl(url)
-//     // ...
-//   }, [pathname])
+  //  console.log("current rasta",cUrl)
+
+  //   const pathname = usePathname()
+  //   console.log(pathname)
+  //   useEffect(() => {
+  //     const url= pathname;
+  //     setCUrl(url)
+  //     // ...
+  //   }, [pathname])
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("access-token");
+    if (token) {
+      setIsLogin(true);
+    }
+  }, []);
 
 
+  const handleLogOut = () => {
+    localStorage.removeItem("access-token");
+    router.push("/login", { scroll: true });
+  };
 
   const [dark, setDark] = useState(prefersDarkMode);
   const darkTheme = useMemo(
@@ -198,9 +209,26 @@ export default function NavBarDrawer({ children }) {
             </ListItemButton>
           </Link>
         ))}
-        <Link  href="/login">
+        {isLogin ? (
+          <ListItemButton onClick={handleLogOut} sx={{ py: 0, minHeight: 38 }}>
+            <ListItemIcon sx={{ color: "inherit" }}>
+              <FaSignOutAlt />
+            </ListItemIcon>
+            <ListItemText
+              sx={{ ml: -2 }}
+              primary="Log out"
+              primaryTypographyProps={{
+                fontSize: 13,
+                fontWeight: "medium",
+              }}
+            />
+          </ListItemButton>
+        ) : (
+          <Link href="/login">
             <ListItemButton sx={{ py: 0, minHeight: 38 }}>
-              <ListItemIcon sx={{ color: "inherit" }}><FaSignOutAlt /></ListItemIcon>
+              <ListItemIcon sx={{ color: "inherit" }}>
+                <FaSignOutAlt />
+              </ListItemIcon>
               <ListItemText
                 sx={{ ml: -2 }}
                 primary="Login"
@@ -211,6 +239,7 @@ export default function NavBarDrawer({ children }) {
               />
             </ListItemButton>
           </Link>
+        )}
       </List>
     </div>
   );
