@@ -6,7 +6,6 @@ import UtilityPie2 from "@/app/dashboard/components/utilityPie2/page";
 import theme from "@/app/theme";
 import getUtility from "@/lib/getUtility";
 import { Box, Grid, Stack, ThemeProvider, Typography } from "@mui/material";
-import { BarChart } from "@mui/x-charts";
 import React from "react";
 
 const seriesA = {
@@ -79,3 +78,13 @@ export default async function UtilityPage({ params }) {
     </Box>
   );
 }
+
+
+
+// export async function generateStaticParams(){
+//   const posts = await useAllData();
+
+//   return posts.map((post)=>({
+//       id:post.id.toString(),
+//   }))
+// }

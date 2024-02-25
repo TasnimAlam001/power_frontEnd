@@ -1,26 +1,16 @@
-"use client";
+"use client"
 import { Box, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Date from "../date/page";
 import Utilities from "../../utilities/page";
 import AllCharts from "../allCharts/page";
-import useAxiosSecure from "../../Hooks/useAxiousSecure";
+
+import useAllData from "@/lib/useAllData";
 
 const DashboardComponent = () => {
-  const [utility, setUtility] = useState([]);
+  const utility = useAllData();
 
-  const [axiosSecure] = useAxiosSecure();
-  useEffect(() => {
-    axiosSecure("/web-app/dashboard").then((res) => {
-      console.log(res);
-      const utilities = res.data.data.companyListWithTickets;
-      setUtility(utilities);
-      console.log("data: ", utilities);
-      // console.log("data1: ",  res.data.data.companyListWithTickets);
-    });
-  }, [axiosSecure]);
-
-
+  console.log(utility);
 
   return (
     <Box>
@@ -33,9 +23,7 @@ const DashboardComponent = () => {
 
         <Date />
       </Stack>
-      <Box my={6}>
-        <Utilities utility={utility}></Utilities>
-      </Box>
+      <Box my={6}>{utility && <Utilities utility={utility} />}</Box>
       <Box>
         <AllCharts></AllCharts>
       </Box>
