@@ -59,7 +59,7 @@ const data = [
     label: "Utilities",
     route: "utility",
   },
-  { id: 3, icon: <FaMapMarkerAlt />, label: "Zone", route: "executive" },
+  { id: 3, icon: <FaMapMarkerAlt />, label: "Zone", route: "zone" },
   { id: 4, icon: <TbBulbFilled />, label: "S & D List", route: "executive" },
   { id: 5, icon: <FaUsers />, label: "Users", route: "executive" },
   { id: 6, icon: <GiWallet />, label: "All Tickets", route: "allTickets" },

@@ -1,17 +1,18 @@
 
-import getAllUtilities from "@/lib/getAllUtilities";
+// import getAllUtilities from "@/lib/getAllUtilities";
 import { Box, Grid, Paper, ThemeProvider, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 
 
-export default async function Utilities() {
-  const result = await getAllUtilities();
+export default async function Utilities({utility}) {
+
+  // const result = await getAllUtilities();
   // console.log(result)
   return (
     <Grid container spacing={{ xs: 2, sm: 4 }}>
-      {result.map((utility) => (
-        <Grid item xs={12} sm={6} lg={4} xl={2} key={utility.id}>
+      {utility.map((data) => (
+        <Grid item xs={12} sm={6} lg={4} xl={2} key={data.id}>
           <Paper
             elevation={2}
             sx={{
@@ -22,12 +23,12 @@ export default async function Utilities() {
               borderRadius: "0.5rem",
             }}
           >
-            <Link href={`/dashboard/utilities/${utility.id}`}>
+            <Link href={`/dashboard/utilities/${data.id}`}>
               <Box px={2} pt={2} pb={1}>
                 <img
                   height={95}
                   width="100%"
-                  src={utility.logo}
+                  src={data.logo}
                   alt="logo"
                 ></img>
               </Box>
@@ -41,7 +42,7 @@ export default async function Utilities() {
               gutterBottom
               variant="h5"
             >
-              {utility.total_complaints}
+              {data.total_tickets}
             </Typography>
 
             <Box
@@ -58,7 +59,7 @@ export default async function Utilities() {
                 borderBottomRightRadius: 6,
               }}
             >
-              {utility.timestamp}
+              {data.last_connected_at}
             </Box>
           </Paper>
         </Grid>

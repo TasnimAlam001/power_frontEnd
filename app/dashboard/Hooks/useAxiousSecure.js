@@ -1,16 +1,17 @@
-import axios from 'axios';
+"use client";
+import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from "react";
 
 const axiosSecure = axios.create({
-  baseURL: 'http://172.17.0.87:16999/api', 
+  baseURL: "http://172.17.0.87:16999/api",
 });
 const useAxiosSecure = () => {
-    const router = useRouter();
+  const router = useRouter();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
-      const token = localStorage.getItem('access-token');
+      const token = localStorage.getItem("access-token");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -20,8 +21,11 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use(
       (response) => response,
       async (error) => {
-        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-            router.push("/login", { scroll: true });
+        if (
+          error.response &&
+          (error.response.status === 401 || error.response.status === 403)
+        ) {
+          router.push("/login", { scroll: true });
         }
         return Promise.reject(error);
       }
