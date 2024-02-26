@@ -5,6 +5,7 @@ import TableStatusColumn from "../components/tableStatus/page";
 import TableIdColumn from "../components/tableIdColumn/page";
 import Link from "next/link";
 import TicketId from "./ticketId/page";
+import useAllTickets from "@/lib/useAllTickets";
 
 // const rows = [
 //   {
@@ -653,7 +654,14 @@ const columns = [
   // },
 ];
 
+
+
 export default function DataTable() {
+
+  const tickets = useAllTickets();
+  console.log(tickets)
+
+
   return (
     <div style={{ height: 600, width: "100%", overflow: "auto" }}>
       <DataGrid

@@ -10,7 +10,7 @@ import useAllData from "@/lib/useAllData";
 const DashboardComponent = () => {
   const utility = useAllData();
 
-  console.log(utility);
+  // console.log(utility);
 
   return (
     <Box>

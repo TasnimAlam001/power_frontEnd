@@ -108,11 +108,12 @@ export default function Login() {
       if (res.data.message === "Login Successful") {
         const token = res.data.data.token;
 
+        router.push("/dashboard", { scroll: true });
         toast("Login Successful");
         // console.log("token",token)
         localStorage.setItem("access-token", token);
 
-        router.push("/dashboard", { scroll: true });
+        
       }
 
       // console.log(res);
