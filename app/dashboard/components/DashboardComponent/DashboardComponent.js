@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import Date from "../date/page";
@@ -23,10 +23,16 @@ const DashboardComponent = () => {
 
         <Date />
       </Stack>
-      <Box my={6}>{utility && <Utilities utility={utility} />}</Box>
-      <Box>
-        <AllCharts></AllCharts>
-      </Box>
+      {utility && (
+        <>
+          <Box my={6}>
+            <Utilities utility={utility} />
+          </Box>
+          <Box>
+            <AllCharts></AllCharts>
+          </Box>
+        </>
+      )}
     </Box>
   );
 };

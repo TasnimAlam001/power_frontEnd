@@ -7,19 +7,25 @@ export default function TableStatusColumn({ params }) {
     const status = params.formattedValue;
 
     let backgroundColor;
-    if (status === "Open") {
+    let newStatus = "";
+
+    if (status === "1") {
         backgroundColor = green[500];
-    } else if (status === "Pending") {
-        backgroundColor = orange[300];
-    }else if (status === "Resolved") {
+        newStatus = "Opened"
+    } else if (status === "2") {
         backgroundColor = green[200];
+        newStatus = "Processing"
+    }else if (status === "3") {
+        backgroundColor = orange[300];
+        newStatus = "Close"
     } else {
         backgroundColor = deepOrange[300];
+        newStatus = "Reopened"
     }
 
     return (
         <Box sx={{ p: 1, backgroundColor: backgroundColor, borderRadius: "10px" }}>
-            {params.formattedValue}
+            {newStatus}
         </Box>
     )
 }
