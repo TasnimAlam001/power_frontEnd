@@ -50,6 +50,7 @@ import Link from "next/link";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Profile from "../profile/page";
 import { useRouter } from "next/navigation";
+import { signIn, signOut } from "next-auth/react";
 
 const data = [
   { id: 1, icon: <FaUser />, label: "Executive", route: "executive" },
@@ -124,6 +125,9 @@ export default function NavBarDrawer({ children }) {
   // const [cUrl, setCUrl] = React.useState();
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: light)");
 
+  // const {data: session} = useSession();
+  // console.log("session data: ",session)
+
   //  console.log("current rasta",cUrl)
 
   //   const pathname = usePathname()
@@ -144,6 +148,7 @@ export default function NavBarDrawer({ children }) {
 
   const handleLogOut = () => {
     localStorage.removeItem("access-token");
+    signOut();
     router.push("/login", { scroll: true });
   };
 
@@ -209,7 +214,7 @@ export default function NavBarDrawer({ children }) {
             </ListItemButton>
           </Link>
         ))}
-        {isLogin ? (
+        {isLogin?(
           <ListItemButton onClick={handleLogOut} sx={{ py: 0, minHeight: 38 }}>
             <ListItemIcon sx={{ color: "inherit" }}>
               <FaSignOutAlt />
@@ -224,8 +229,8 @@ export default function NavBarDrawer({ children }) {
             />
           </ListItemButton>
         ) : (
-          <Link href="/login">
-            <ListItemButton sx={{ py: 0, minHeight: 38 }}>
+          
+            <ListItemButton onClick={()=>signIn()} sx={{ py: 0, minHeight: 38 }}>
               <ListItemIcon sx={{ color: "inherit" }}>
                 <FaSignOutAlt />
               </ListItemIcon>
@@ -238,7 +243,7 @@ export default function NavBarDrawer({ children }) {
                 }}
               />
             </ListItemButton>
-          </Link>
+        
         )}
       </List>
     </div>

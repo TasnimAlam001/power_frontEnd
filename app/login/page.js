@@ -28,6 +28,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "@/app/dashboard/Hooks/useAxiousSecure";
+import { signIn } from "../auth";
+import { loginAction } from "../dashboard/components/action/loginAction";
 
 // import InputLabel from '@mui/material/InputLabel';
 const url = "http://172.17.0.87:16999/api";
@@ -39,23 +41,36 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
-  const [axiosSecure] = useAxiosSecure()
+  const [axiosSecure] = useAxiosSecure();
 
   const {
     register,
     formState: { errors },
+    reset,
     handleSubmit,
   } = useForm();
 
-
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     console.log(data);
     const email = data.email;
     const password = data.password;
+    // await signIn("credentials", {
+    //   email: email,
+    //   password: password,
+    //   redirect: false,
+    // });
+   
 
     try {
-      const res = await axiosSecure.post('/web-app/login', {email,password});
+      const res = await axiosSecure.post("/web-app/login", { email, password });
       console.log("response", res);
+      // await signIn("credentials", {
+      //   email: email,
+      //   password: password,
+      //   redirect: false,
+      // });
+      await loginAction(data)
+      
 
       if (res.data.message === "Login Successful") {
         const token = res.data.data.token;
@@ -64,29 +79,26 @@ export default function Login() {
         // console.log("token",token)
         localStorage.setItem("access-token", token);
 
-        router.push("/dashboard", { scroll: true });
+        // router.push("/dashboard", { scroll: true });
       }
 
       // console.log(res);
     } catch (error) {
       console.log("error hoise: ", error.response);
-      if (error.response.status === 400) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Please check your email and password again!",
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${error.response.data.message}`,
-        });
-      }
+      // if (error.response.status === 400) {
+      //   Swal.fire({
+      //     icon: "error",
+      //     title: "Oops...",
+      //     text: "Please check your email and password again!",
+      //   });
+      // } else {
+      //   Swal.fire({
+      //     icon: "error",
+      //     title: "Oops...",
+      //     text: `${error.response.data.message}`,
+      //   });
+      // }
     }
-
-
-
   };
 
   const handleMouseDownPassword = (event) => {
@@ -112,8 +124,6 @@ export default function Login() {
         toast("Login Successful");
         // console.log("token",token)
         localStorage.setItem("access-token", token);
-
-        
       }
 
       // console.log(res);
@@ -168,15 +178,14 @@ export default function Login() {
               </Typography>
             </Box>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <Box sx={{ width: "100%" }}>
+              <Box sx={{ width: "100%" }}>
                 <FormControl variant="outlined">
                   <InputLabel htmlFor="component-simple">Email</InputLabel>
                   <OutlinedInput
-                  sx={{ width: {xs: 280, sm: 350} }}
+                    sx={{ width: { xs: 280, sm: 350 } }}
                     id="component-outlined"
                     // placeholder="Inter your Email"
                     label="Email"
-                  
                     value={email}
                     {...register("email", { required: true })}
                     onChange={(e) => setEmail(e.target.value)}
@@ -195,11 +204,10 @@ export default function Login() {
                   </InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-password"
-                    sx={{ width: {xs: 280, sm: 350} }}
+                    sx={{ width: { xs: 280, sm: 350 } }}
                     type={showPassword ? "text" : "password"}
                     value={password}
                     {...register("password", { required: true })}
-                    
                     onChange={(e) => setPassword(e.target.value)}
                     endAdornment={
                       <InputAdornment position="end">
@@ -229,7 +237,7 @@ export default function Login() {
               labelPlacement="end"
             /> */}
               <Stack
-                sx={{ width: {xs: 280, sm: 350} }}
+                sx={{ width: { xs: 280, sm: 350 } }}
                 // width={350}
                 direction="row"
                 alignItems="center"
@@ -250,7 +258,7 @@ export default function Login() {
                 variant="contained"
                 type="submit"
                 sx={{
-                  width: {xs: 280, sm: 350},
+                  width: { xs: 280, sm: 350 },
                   backgroundColor: green[900],
                   "&:hover": {
                     backgroundColor: green[800],
@@ -273,7 +281,10 @@ export default function Login() {
               </span>
             </Typography>
           </Stack>
-          <Typography color="black" sx={{ fontSize: 12, mt: 8, textAlign: "center" }}>
+          <Typography
+            color="black"
+            sx={{ fontSize: 12, mt: 8, textAlign: "center" }}
+          >
             © 2023, All Rights Reserved. Developed By{" "}
             <span style={{ color: "#00ACF3" }}>Digicon Technologies ltd.</span>
           </Typography>
