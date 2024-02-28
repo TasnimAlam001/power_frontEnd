@@ -4,6 +4,7 @@ import {
   AppBar,
   Badge,
   Box,
+  Button,
   CssBaseline,
   Divider,
   Drawer,
@@ -51,6 +52,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Profile from "../profile/page";
 import { useRouter } from "next/navigation";
 import { signIn, signOut } from "next-auth/react";
+import { auth } from "@/app/auth";
 
 const data = [
   { id: 1, icon: <FaUser />, label: "Executive", route: "executive" },
@@ -116,12 +118,13 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 const drawerWidth = 200;
 
-export default function NavBarDrawer({ children }) {
+export default  function NavBarDrawer() {
   const router = useRouter();
   const theme = useTheme();
   const [isLogin, setIsLogin] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  // const session =  auth();
   // const [cUrl, setCUrl] = React.useState();
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: light)");
 
@@ -334,7 +337,9 @@ export default function NavBarDrawer({ children }) {
                   <MaterialUISwitch onClick={() => setDark(!dark)} />
                 </Typography>
 
-                <Profile></Profile>
+                {
+                  isLogin? <Profile/> : <Button>SignIn</Button>
+                }
               </Stack>
             </Stack>
           </Toolbar>

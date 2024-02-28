@@ -24,9 +24,9 @@ export default async function Utilities({utility}) {
             }}
           >
             <Link href={`/dashboard/utilities/${data.id}`}>
-              <Box px={2} pt={2} pb={1}>
+              <Box height={100} px={2} pt={2} pb={2}>
                 <img
-                  height={95}
+                  height="100%"
                   width="100%"
                   src={data.logo}
                   alt="logo"
