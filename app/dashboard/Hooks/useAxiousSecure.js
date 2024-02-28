@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect } from "react";
 
 const axiosSecure = axios.create({
-  baseURL: "http://172.17.0.87:16999/api",
+  baseURL: "http://172.17.0.87:16999/api/web-app",
 });
 const useAxiosSecure = () => {
   const router = useRouter();

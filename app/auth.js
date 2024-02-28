@@ -1,5 +1,7 @@
+
 import NextAuth from "next-auth";
 import Credentials from 'next-auth/providers/credentials'
+// import AxiosCall from "./dashboard/components/AxiousCall/AxiosCall";
 
 
 export const {auth,signIn, handlers:{GET,POST}} =NextAuth({
@@ -31,12 +33,22 @@ export const {auth,signIn, handlers:{GET,POST}} =NextAuth({
                 //     return user ;
                 // }
                 // else return null;
+                const email = credential?.email;
+                const password = credential?.password;
+                console.log(credential?.email, credential?.password)
+
+                // const data = await AxiosCall(
+                //     "/login",
+                //     email,
+                //     password,
+                //   );
+                // console.log("from auth page", data);
 
 
-                const user = {id : 100, email: "super@gmail.com", password: "super@12345"};
+                const user = {id : 100, email2: "super@gmail.com", password2: "super@12345"};
                 if(
-                    credential?.email == user.email && 
-                    credential?.password == user.password
+                    email == user.email2 && 
+                    password == user.password2
                 ){
                     return user;
                 }else return null;

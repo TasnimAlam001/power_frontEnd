@@ -623,17 +623,17 @@ const columns = [
   {
     field: "company_zone_name",
     headerName: "Area",
-    minWidth: 150 
+    minWidth: 150,
   },
   {
     field: "supply_and_distribution_name",
     headerName: "Office",
-    minWidth: 150 
+    minWidth: 150,
   },
   {
     field: "request_category_name",
     headerName: "Ticket Category",
-    minWidth: 140 
+    minWidth: 140,
   },
   {
     field: "created_at",
@@ -641,8 +641,8 @@ const columns = [
     editable: true,
     align: "left",
     headerAlign: "left",
-    minWidth: 150 ,
-    renderCell: (params) => <TimeDateFormate {...{params}}/>
+    minWidth: 150,
+    renderCell: (params) => <TimeDateFormate {...{ params }} />,
     // type: "dateTime"
   },
   // {
@@ -656,11 +656,13 @@ const columns = [
   // },
 ];
 
-
-
 export default function DataTable() {
-
   const rows = useAllTickets();
+
+
+    // const data = AxiosCall(
+    //   "web-app/ticket?start_date=2023-11-01&end_date=2023-12-31"
+    // );
 
 
 
@@ -674,7 +676,7 @@ export default function DataTable() {
             paginationModel: { page: 0, pageSize: 10 },
           },
         }}
-        pageSizeOptions={[10,20]}
+        pageSizeOptions={[10, 20]}
         slots={{
           toolbar: GridToolbar,
         }}

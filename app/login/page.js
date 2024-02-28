@@ -51,40 +51,31 @@ export default function Login() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const email = data.email;
-    const password = data.password;
-    // await signIn("credentials", {
-    //   email: email,
-    //   password: password,
-    //   redirect: false,
-    // });
-   
+    const password = data.password;   
 
     try {
-      const res = await axiosSecure.post("/web-app/login", { email, password });
-      console.log("response", res);
-      // await signIn("credentials", {
-      //   email: email,
-      //   password: password,
-      //   redirect: false,
-      // });
-      await loginAction(data)
+      const res = await axiosSecure.post("login", { email, password });
+      // console.log("response", res);
+     
+      let r = await loginAction(data);
+
+      console.log("response of", r);
       
 
-      if (res.data.message === "Login Successful") {
-        const token = res.data.data.token;
+      // if (res.data.message === "Login Successful") {
+      //   const token = res.data.data.token;
 
-        toast("Login Successful");
-        // console.log("token",token)
-        localStorage.setItem("access-token", token);
+      //   toast("Login Successful");
+      //   // console.log("token",token)
+      //   localStorage.setItem("access-token", token);
 
-        // router.push("/dashboard", { scroll: true });
-      }
+      //   // router.push("/dashboard", { scroll: true });
+      // }
 
       // console.log(res);
     } catch (error) {
-      console.log("error hoise: ", error.response);
+      console.log("error hoise: ", error);
       // if (error.response.status === 400) {
       //   Swal.fire({
       //     icon: "error",
