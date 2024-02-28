@@ -63,15 +63,15 @@ export default function Login() {
       console.log("response of", r);
       
 
-      // if (res.data.message === "Login Successful") {
-      //   const token = res.data.data.token;
+      if (res.data.message === "Login Successful") {
+        const token = res.data.data.token;
 
-      //   toast("Login Successful");
-      //   // console.log("token",token)
-      //   localStorage.setItem("access-token", token);
+        toast("Login Successful");
+        // console.log("token",token)
+        localStorage.setItem("access-token", token);
 
-      //   // router.push("/dashboard", { scroll: true });
-      // }
+        // router.push("/dashboard", { scroll: true });
+      }
 
       // console.log(res);
     } catch (error) {

@@ -8,13 +8,13 @@ import { AuthError } from "next-auth";
 export async function loginAction(formData) {
     // console.log(formData)
   try{
-    let sin = await signIn("credentials", {
+    await signIn("credentials", {
       email: formData.email,
       password: formData.password,
       redirectTo: "/dashboard",
     });
 
-    return sin;
+    
   }catch(error){
     if(error instanceof AuthError){
       switch(error.type)
@@ -25,5 +25,6 @@ export async function loginAction(formData) {
           return  {error: "Unknown Error"}
       }
     }
+    throw error;
   }
 }
