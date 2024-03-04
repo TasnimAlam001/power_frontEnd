@@ -4,7 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 export const {
   auth,
   signIn,
-  signOut,
+
   handlers: { GET, POST },
 } = NextAuth({
   providers: [
@@ -33,15 +33,27 @@ export const {
         const user = userData.data;
 
         if (userData?.status === "ok") {
-          return {
-            user,
-            email: user.user.email,
-            name: user.token
-          };
+        //   return user;
+            return {
+                name: "superAdmin",
+                email: "super@gmail.com",  
+                user          
+            };
         } else return null;
       },
     }),
   ],
+  callbacks: {
+    async jwt(params) { 
+       
+      return params;
+    },
+    async session(sessions){
+
+        return sessions;
+    }
+  },
+
   pages: {
     signIn: "/login",
   },
