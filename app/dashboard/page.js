@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 export default async function Dashboard() {
   const session = await auth();
   console.log("session: ", session)
+  // console.log("session-token: ", session?.user.token)
   if(!session) redirect("/api/auth/signin");
   return (
     <main>

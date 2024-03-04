@@ -52,7 +52,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Profile from "../profile/page";
 import { useRouter } from "next/navigation";
 import { signIn, signOut } from "next-auth/react";
-import { auth } from "@/app/auth";
+// import { auth, signIn, signOut } from "@/app/auth";
 
 const data = [
   { id: 1, icon: <FaUser />, label: "Executive", route: "executive" },
@@ -153,6 +153,7 @@ export default  function NavBarDrawer() {
     localStorage.removeItem("access-token");
     signOut();
     router.push("/login", { scroll: true });
+    
   };
 
   const [dark, setDark] = useState(prefersDarkMode);

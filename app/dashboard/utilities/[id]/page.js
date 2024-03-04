@@ -39,7 +39,7 @@ const seriesD = {
 
 export default async function UtilityPage({ params }) {
   const { id } = params;
-  console.log(id);
+  // console.log(id);
   const utility = await getUtility(id);
   // console.log("vitoreeee",utility);
 
